@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SystemManagement.Common\SystemManagement.Common.csproj" />
+    <ProjectReference Include="..\SystemManagement.Repository\SystemManagement.Repository.csproj" />
   </ItemGroup>
 
 
