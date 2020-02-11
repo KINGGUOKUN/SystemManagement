@@ -9,5 +9,9 @@
     <Folder Include="ClientApp\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SystemManagement.Common\SystemManagement.Common.csproj" />
+  </ItemGroup>
+
 
 </Project>
