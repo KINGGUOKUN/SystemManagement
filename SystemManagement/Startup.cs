@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,7 +29,12 @@ namespace SystemManagement
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers(options => options.Filters.Add(typeof(CustomExceptionFilterAttribute)))
+                 .AddJsonOptions(options =>
+                 {
+                     options.JsonSerializerOptions.Converters.Add(new DateTimeConverter());
+                     options.JsonSerializerOptions.Converters.Add(new DateTimeNullableConverter());
+                 });
 
             services.AddDbContextPool<SystemManageDbContext>(options => 
                 options.UseMySql(Configuration.GetConnectionString("Default"), mySqlOptions => 

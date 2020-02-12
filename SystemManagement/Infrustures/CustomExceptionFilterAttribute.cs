@@ -7,7 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using SystemManagement.Common;
 
-namespace SystemManagement.Infrustures
+namespace Microsoft.AspNetCore.Mvc
 {
     public class CustomExceptionFilterAttribute : ExceptionFilterAttribute
     {
