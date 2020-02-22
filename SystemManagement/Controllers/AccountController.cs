@@ -28,7 +28,8 @@ namespace SystemManagement.Controllers
             _accountService = accountService;
         }
 
-        public async Task<IActionResult> Login(SysUserDto userDto)
+        [HttpPost]
+        public async Task<IActionResult> Login([FromBody]SysUserDto userDto)
         {
             var validateResult = await _accountService.ValidateCredentials(userDto.Account, userDto.Password);
             if (!validateResult.Item1)
@@ -59,6 +60,12 @@ namespace SystemManagement.Controllers
             var jwtToken = new JwtSecurityTokenHandler().WriteToken(token);
 
             return new JsonResult(new { token = jwtToken });
+        }
+
+        [HttpGet("info")]
+        public async Task<SysUserDto> GetCurrentUserInfo()
+        {
+            return await _accountService.GetCurrentUserInfo();
         }
     }
 }

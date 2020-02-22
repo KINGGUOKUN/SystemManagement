@@ -12,12 +12,21 @@ namespace SystemManagement.Service
     public class AccountService : IAccountService
     {
         private readonly IMapper _mapper;
+        private readonly SysUserDto _currentUser;
         private readonly IUserRepository _userRepository;
 
-        public AccountService(IMapper mapper, IUserRepository userRepository)
+        public AccountService(IMapper mapper, SysUserDto currentUser, IUserRepository userRepository)
         {
             _mapper = mapper;
+            _currentUser = currentUser;
             _userRepository = userRepository;
+        }
+
+        public async Task<SysUserDto> GetCurrentUserInfo()
+        {
+            var user = await _userRepository.FetchAsync(x => x.ID == _currentUser.ID);
+
+            return _mapper.Map<SysUserDto>(user);
         }
 
         public async Task<Tuple<bool, SysUserDto>> ValidateCredentials(string account, string password)

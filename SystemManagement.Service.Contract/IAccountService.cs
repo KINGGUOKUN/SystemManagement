@@ -9,5 +9,7 @@ namespace SystemManagement.Service.Contract
     public interface IAccountService : IService
     {
         Task<Tuple<bool, SysUserDto>> ValidateCredentials(string account, string password);
+
+        Task<SysUserDto> GetCurrentUserInfo();
     }
 }
