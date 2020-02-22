@@ -6,6 +6,7 @@ namespace SystemManagement.Common
 {
     public enum ErrorCode
     {
+        BadRequest = 400,
         Forbidden = 403,
         NotFound = 404,
         InternalServerError = 500,
