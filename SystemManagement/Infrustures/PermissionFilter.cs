@@ -17,8 +17,9 @@ namespace Microsoft.AspNetCore.Mvc.Filters
 
         public async Task OnAuthorizationAsync(AuthorizationFilterContext context)
         {
-            var authorizationResult = await _authorizationService.AuthorizeAsync(context.HttpContext.User, null, _requirement);
-            if (!authorizationResult.Succeeded)
+            var result = await _authorizationService.AuthorizeAsync(context.HttpContext.User, null, _requirement);
+
+            if (!result.Succeeded)
             {
                 context.Result = new ForbidResult();
             }

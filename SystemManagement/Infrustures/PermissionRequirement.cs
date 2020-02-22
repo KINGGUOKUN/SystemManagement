@@ -2,14 +2,14 @@
 {
     public class PermissionRequirement : IAuthorizationRequirement
     {
-        public string Module { get; private set; }
-
-        public string Action { get; private set; }
-
-        public PermissionRequirement(string module, string action)
+        public PermissionRequirement(string module, string button)
         {
             this.Module = module;
-            this.Action = action;
+            this.Button = button;
         }
+
+        public string Module { get; private set; }
+
+        public string Button { get; private set; }
     }
 }

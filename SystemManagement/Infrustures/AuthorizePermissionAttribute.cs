@@ -8,13 +8,15 @@ using System.Threading.Tasks;
 
 namespace Microsoft.AspNetCore.Mvc
 {
-    public class AuthorizePermissionAttribute : TypeFilterAttribute
+    /// <summary>
+    /// 权限特性
+    /// </summary>
+    public class PermissionAttribute : TypeFilterAttribute
     {
-        public AuthorizePermissionAttribute(string module, string action)
-              : base(typeof(PermissionFilter))
+        public PermissionAttribute(string module, string button)
+            : base(typeof(PermissionFilter))
         {
-            Arguments = new[] { new PermissionRequirement(module, action) };
-            Order = int.MaxValue;
+            Arguments = new[] { new PermissionRequirement(module, button) };
         }
     }
 }
