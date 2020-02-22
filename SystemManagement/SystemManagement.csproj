@@ -10,6 +10,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\SystemManagement.Common\SystemManagement.Common.csproj" />
     <ProjectReference Include="..\SystemManagement.Repository\SystemManagement.Repository.csproj" />
     <ProjectReference Include="..\SystemManagement.Service.Contract\SystemManagement.Service.Contract.csproj" />
