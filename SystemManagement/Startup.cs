@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -22,6 +23,7 @@ using Microsoft.IdentityModel.Tokens;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using Pomelo.EntityFrameworkCore.MySql.Storage;
 using SystemManagement.Common;
+using SystemManagement.Dto;
 using SystemManagement.Repository;
 using SystemManagement.Repository.Contract;
 using SystemManagement.Service;
@@ -71,6 +73,17 @@ namespace SystemManagement
                         ValidateLifetime = true,
                         ClockSkew = TimeSpan.FromMinutes(5)
                     };
+                    options.Events.OnTokenValidated = context =>
+                    {
+                        var currentUser = context.HttpContext.RequestServices.GetService<SysUserDto>();
+                        var claims = context.Principal.Claims;
+                        currentUser.ID = long.Parse(claims.First(x => x.Type == JwtRegisteredClaimNames.Sub).Value);
+                        currentUser.Name = claims.First(x => x.Type == ClaimTypes.Name).Value;
+                        currentUser.Email = claims.First(x => x.Type == JwtRegisteredClaimNames.Email).Value;
+                        currentUser.RoleId = claims.First(x => x.Type == ClaimTypes.Role).Value;
+
+                        return Task.CompletedTask;
+                    };
                 });
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
@@ -87,6 +100,8 @@ namespace SystemManagement
             });
 
             services.AddAutoMapper(typeof(SystemManagementProfile));
+
+            services.AddScoped<SysUserDto>();
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
@@ -107,6 +122,7 @@ namespace SystemManagement
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
