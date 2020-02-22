@@ -1,0 +1,10 @@
+﻿{
+  "modules": [
+    {
+      "type": "SystemManagement.Repository.RepositoryModule, SystemManagement.Repository"
+    },
+    {
+      "type": "SystemManagement.Service.ServiceModule, SystemManagement.Service"
+    }
+  ]
+}

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
-namespace SystemManagement.Repository
+namespace SystemManagement.Repository.Contract
 {
     public class SystemManageDbContext : DbContext
     {

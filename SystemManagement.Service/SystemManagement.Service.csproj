@@ -4,4 +4,14 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="5.1.2" />
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SystemManagement.Repository.Contract\SystemManagement.Repository.Contract.csproj" />
+    <ProjectReference Include="..\SystemManagement.Service.Contract\SystemManagement.Service.Contract.csproj" />
+  </ItemGroup>
+
 </Project>

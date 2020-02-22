@@ -3,23 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemManagement", "SystemManagement\SystemManagement.csproj", "{CA30ED4A-B160-4764-9521-3FC46D5C421E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemManagement", "SystemManagement\SystemManagement.csproj", "{CA30ED4A-B160-4764-9521-3FC46D5C421E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemManagement.Service", "SystemManagement.Service\SystemManagement.Service.csproj", "{D2B0536E-B13B-4D22-B084-C84EAD54A5A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemManagement.Service", "SystemManagement.Service\SystemManagement.Service.csproj", "{D2B0536E-B13B-4D22-B084-C84EAD54A5A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemManagement.Service.Contract", "SystemManagement.Service.Contract\SystemManagement.Service.Contract.csproj", "{26951872-E0BB-488E-A958-D529E987DAE4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemManagement.Service.Contract", "SystemManagement.Service.Contract\SystemManagement.Service.Contract.csproj", "{26951872-E0BB-488E-A958-D529E987DAE4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemManagement.Repository", "SystemManagement.Repository\SystemManagement.Repository.csproj", "{5E5365B1-5DFC-48DF-B7B7-08547FCB503E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemManagement.Repository", "SystemManagement.Repository\SystemManagement.Repository.csproj", "{5E5365B1-5DFC-48DF-B7B7-08547FCB503E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemManagement.Repository.Contract", "SystemManagement.Repository.Contract\SystemManagement.Repository.Contract.csproj", "{53136C42-F246-4A60-B272-44518305D55C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemManagement.Repository.Contract", "SystemManagement.Repository.Contract\SystemManagement.Repository.Contract.csproj", "{53136C42-F246-4A60-B272-44518305D55C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemManagement.Common", "SystemManagement.Common\SystemManagement.Common.csproj", "{03D616BE-A739-4758-A02D-1B2A82904961}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemManagement.Common", "SystemManagement.Common\SystemManagement.Common.csproj", "{03D616BE-A739-4758-A02D-1B2A82904961}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemManagement.Entity", "SystemManagement.Entity\SystemManagement.Entity.csproj", "{272C8F7D-B58B-49F3-BE71-FA4DBE812163}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemManagement.Entity", "SystemManagement.Entity\SystemManagement.Entity.csproj", "{272C8F7D-B58B-49F3-BE71-FA4DBE812163}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemManagement.Dto", "SystemManagement.Dto\SystemManagement.Dto.csproj", "{1F8AEB23-6BB3-42E2-AE87-70512332288D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrusture.Repository", "Infrusture.EF\Infrusture.Repository.csproj", "{AD40FA45-7E8E-4011-9756-C8CBE9A968BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemManagement.Dto", "SystemManagement.Dto\SystemManagement.Dto.csproj", "{1F8AEB23-6BB3-42E2-AE87-70512332288D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,10 +57,6 @@ Global
 		{1F8AEB23-6BB3-42E2-AE87-70512332288D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F8AEB23-6BB3-42E2-AE87-70512332288D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F8AEB23-6BB3-42E2-AE87-70512332288D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AD40FA45-7E8E-4011-9756-C8CBE9A968BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AD40FA45-7E8E-4011-9756-C8CBE9A968BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AD40FA45-7E8E-4011-9756-C8CBE9A968BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AD40FA45-7E8E-4011-9756-C8CBE9A968BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

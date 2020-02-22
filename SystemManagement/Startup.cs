@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Autofac;
+using Autofac.Configuration;
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -20,6 +23,8 @@ using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using Pomelo.EntityFrameworkCore.MySql.Storage;
 using SystemManagement.Common;
 using SystemManagement.Repository;
+using SystemManagement.Repository.Contract;
+using SystemManagement.Service;
 
 namespace SystemManagement
 {
@@ -80,6 +85,14 @@ namespace SystemManagement
                     .AllowAnyMethod();
                 });
             });
+
+            services.AddAutoMapper(typeof(SystemManagementProfile));
+        }
+
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            var module = new ConfigurationModule(Configuration);
+            builder.RegisterModule(module);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

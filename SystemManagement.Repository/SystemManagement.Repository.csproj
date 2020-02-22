@@ -5,11 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="5.1.2" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.1.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Infrusture.EF\Infrusture.Repository.csproj" />
+    <ProjectReference Include="..\SystemManagement.Repository.Contract\SystemManagement.Repository.Contract.csproj" />
   </ItemGroup>
 
 </Project>
