@@ -43,6 +43,16 @@ namespace SystemManagement
             ));
 
             services.AddSingleton<IAuthorizationHandler, PermissionHandler>();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("default", policy =>
+                {
+                    policy.WithOrigins(Configuration.GetValue<string>("CorsHosts"))
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,6 +62,8 @@ namespace SystemManagement
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors("default");
 
             app.UseRouting();
 
