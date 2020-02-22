@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using SystemManagement.Dto;
 using SystemManagement.Repository.Contract;
 using SystemManagement.Service.Contract;
+using WeihanLi.Common.Helpers;
 
 namespace SystemManagement.Service
 {
@@ -34,7 +35,7 @@ namespace SystemManagement.Service
             var user = await _userRepository.FetchAsync(x => x.Account == account);
             if (user != null)
             {
-                if (user.Password == password)
+                if (HashHelper.GetHashedString(HashType.MD5, user.Password) == password)
                 {
                     return Tuple.Create(true, _mapper.Map<SysUserDto>(user));
                 }

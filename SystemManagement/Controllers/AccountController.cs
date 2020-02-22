@@ -28,6 +28,11 @@ namespace SystemManagement.Controllers
             _accountService = accountService;
         }
 
+        /// <summary>
+        /// 登录
+        /// </summary>
+        /// <param name="userDto"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> Login([FromBody]SysUserDto userDto)
         {
@@ -62,10 +67,24 @@ namespace SystemManagement.Controllers
             return new JsonResult(new { token = jwtToken });
         }
 
+        /// <summary>
+        /// 获取个人信息
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("info")]
         public async Task<SysUserDto> GetCurrentUserInfo()
         {
             return await _accountService.GetCurrentUserInfo();
+        }
+
+        /// <summary>
+        /// 退出登录
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public IActionResult Logout()
+        {
+            return new OkObjectResult("退出成功");
         }
     }
 }
