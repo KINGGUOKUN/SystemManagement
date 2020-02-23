@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SystemManagement.Service.Contract
 {
-    public interface IMenuService
+    public interface IMenuService : IService
     {
     }
 }
