@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SystemManagement.Dto
 {
-	public class SysLoginLog
+	public class SysLoginLogDto
 	{
 		/// <summary>
 		/// 创建时间

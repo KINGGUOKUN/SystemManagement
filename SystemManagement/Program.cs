@@ -20,14 +20,12 @@ namespace SystemManagement
 
         public static IHostBuilder CreateHostBuilder(string[] args)
         {
-            var config = new ConfigurationBuilder()
-                  .SetBasePath(Directory.GetCurrentDirectory())
-                  .AddJsonFile("hostsettings.json", optional: true)
-                  .AddJsonFile("autofac.json", optional: true)
-                  .AddCommandLine(args)
-                  .Build();
-
             return Host.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration((context, configuration) =>
+                {
+                    configuration.AddJsonFile("hostsettings.json", optional: true)
+                    .AddJsonFile("autofac.json", optional: true);
+                })
                 .UseServiceProviderFactory(new AutofacServiceProviderFactory())
                 .ConfigureWebHostDefaults(webBuilder =>
                 {

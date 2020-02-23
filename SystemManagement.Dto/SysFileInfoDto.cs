@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SystemManagement.Dto
 {
-	public class SysFileInfo
+	public class SysFileInfoDto
 	{
 		/// <summary>
 		/// 创建人

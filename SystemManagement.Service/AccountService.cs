@@ -52,7 +52,7 @@ namespace SystemManagement.Service
             }
 
             var user = await _userRepository.FetchAsync(x => x.ID == _currentUser.ID);
-            if (!string.Equals(HashHelper.GetHashedString(HashType.MD5, passwordDto.OldPassword + user.Salt), user.Password, StringComparison.OrdinalIgnoreCase))
+            if (!string.Equals(HashHelper.GetHashedString(HashType.MD5, passwordDto.OldPassword, user.Salt), user.Password, StringComparison.OrdinalIgnoreCase))
             {
                 throw new BusinessException((int)ErrorCode.Forbidden, "旧密码输入错误");
             }
@@ -66,7 +66,7 @@ namespace SystemManagement.Service
             var user = await _userRepository.FetchAsync(x => x.Account == account);
             if (user != null)
             {
-                if (HashHelper.GetHashedString(HashType.MD5, user.Password) == password)
+                if (HashHelper.GetHashedString(HashType.MD5, password, user.Salt) == user.Password)
                 {
                     return Tuple.Create(true, _mapper.Map<SysUserDto>(user));
                 }

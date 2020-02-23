@@ -73,16 +73,19 @@ namespace SystemManagement
                         ValidateLifetime = true,
                         ClockSkew = TimeSpan.FromMinutes(5)
                     };
-                    options.Events.OnTokenValidated = context =>
+                    options.Events = new JwtBearerEvents
                     {
-                        var currentUser = context.HttpContext.RequestServices.GetService<SysUserDto>();
-                        var claims = context.Principal.Claims;
-                        currentUser.ID = long.Parse(claims.First(x => x.Type == JwtRegisteredClaimNames.Sub).Value);
-                        currentUser.Name = claims.First(x => x.Type == ClaimTypes.Name).Value;
-                        currentUser.Email = claims.First(x => x.Type == JwtRegisteredClaimNames.Email).Value;
-                        currentUser.RoleId = claims.First(x => x.Type == ClaimTypes.Role).Value;
+                        OnTokenValidated = context =>
+                        {
+                            var currentUser = context.HttpContext.RequestServices.GetService<SysUserDto>();
+                            var claims = context.Principal.Claims;
+                            currentUser.ID = long.Parse(claims.First(x => x.Type == JwtRegisteredClaimNames.Sub).Value);
+                            currentUser.Name = claims.First(x => x.Type == ClaimTypes.Name).Value;
+                            currentUser.Email = claims.First(x => x.Type == JwtRegisteredClaimNames.Email).Value;
+                            currentUser.RoleId = claims.First(x => x.Type == ClaimTypes.Role).Value;
 
-                        return Task.CompletedTask;
+                            return Task.CompletedTask;
+                        }
                     };
                 });
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();

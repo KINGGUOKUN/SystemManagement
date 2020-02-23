@@ -16,7 +16,6 @@ namespace SystemManagement.Entity
 		/// 编号
 		/// </summary>
 		[Description("编号")]
-		[Key]
 		[StringLength(32)]
 		[Column("Code")]
 		public string Code { get; set; }

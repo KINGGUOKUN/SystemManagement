@@ -33,7 +33,7 @@ namespace SystemManagement.Controllers
         /// </summary>
         /// <param name="userDto"></param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody]SysUserDto userDto)
         {
             var validateResult = await _accountService.ValidateCredentials(userDto.Account, userDto.Password);
@@ -81,7 +81,7 @@ namespace SystemManagement.Controllers
         /// 退出登录
         /// </summary>
         /// <returns></returns>
-        [HttpPost]
+        [HttpPost("logout")]
         public IActionResult Logout()
         {
             return new OkObjectResult("退出成功");
