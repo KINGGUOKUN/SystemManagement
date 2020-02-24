@@ -8,24 +8,78 @@ using SystemManagement.Dto;
 using SystemManagement.Entity;
 using SystemManagement.Repository.Contract;
 using SystemManagement.Service.Contract;
+using WeihanLi.Common.Helpers;
 using WeihanLi.Extensions;
+using WeihanLi.EntityFramework;
 
 namespace SystemManagement.Service
 {
     public class UserService : IUserService
     {
         private readonly IMapper _mapper;
+        private readonly SysUserDto _currentUser;
         private readonly IUserRepository _userRepository;
 
-        public UserService(IMapper mapper, IUserRepository userRepository)
+        public UserService(IMapper mapper, 
+            SysUserDto currentUser,
+            IUserRepository userRepository)
         {
             _mapper = mapper;
+            _currentUser = currentUser;
             _userRepository = userRepository;
+        }
+
+        public async Task ChangeStatus(long userId)
+        {
+            var user = await _userRepository.FetchAsync(x => x.ID == userId);
+            user.Status = (int)(user.Status == (int)ManageStatus.Enabled ? ManageStatus.Disabled : ManageStatus.Enabled);
+            await _userRepository.UpdateAsync(user, x => x.Status);
+        }
+
+        public async Task RemoveUser(long userId)
+        {
+            if (userId <= 2)
+            {
+                throw new BusinessException((int)ErrorCode.Forbidden, "不能删除初始用户");
+            }
+
+            var user = await _userRepository.FetchAsync(x => x.ID == userId);
+            user.Status = (int)ManageStatus.Deleted;
+
+            await _userRepository.UpdateAsync(user, x => x.Status);
+        }
+
+        public async Task SaveUser(SysUserDto userDto)
+        {
+            var user = _mapper.Map<SysUser>(userDto);
+            if (user.ID < 1)
+            {
+                if (await _userRepository.ExistAsync(x => x.Account == user.Account))
+                {
+                    throw new BusinessException((int)ErrorCode.Forbidden, "用户已存在");
+                }
+
+                user.Salt = SecurityHelper.GenerateRandomCode(5);
+                user.Password = HashHelper.GetHashedString(HashType.MD5, user.Password, user.Salt);
+                user.CreateBy = _currentUser.ID;
+                user.CreateTime = DateTime.Now;
+
+                await _userRepository.InsertAsync(user);
+            }
+            else
+            {
+                user.ModifyBy = _currentUser.ID;
+                user.ModifyTime = DateTime.Now;
+                await _userRepository.UpdateAsync(user, 
+                    x => x.Account, 
+                    x => x.Name, 
+                    x => x.Email);
+            }
         }
 
         public async Task<PagedModel<SysUserDto>> SearchUsers(UserSearchModel searchModel)
         {
-            Expression<Func<SysUser, bool>> whereCondition = x => x.Status;
+            Expression<Func<SysUser, bool>> whereCondition = x => x.Status == (int)ManageStatus.Enabled;
             if (!string.IsNullOrWhiteSpace(searchModel.Account))
             {
                 whereCondition = whereCondition.And(x => x.Account.Contains(searchModel.Account));
@@ -39,6 +93,18 @@ namespace SystemManagement.Service
             var pagedModel = await _userRepository.PagedAsync(searchModel.PageIndex, searchModel.PageSize, whereCondition, x => x.ID);
 
             return _mapper.Map<PagedModel<SysUserDto>>(pagedModel);
+        }
+
+        public async Task SetRole(long userId, string roleIds)
+        {
+            if(userId == 1)
+            {
+                throw new BusinessException((int)ErrorCode.Forbidden, "禁止修改管理员角色");
+            }
+
+            var user = await _userRepository.FetchAsync(x => x.ID == userId);
+            user.RoleId = roleIds;
+            await _userRepository.UpdateAsync(user, x => x.RoleId);
         }
     }
 }

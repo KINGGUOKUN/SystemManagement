@@ -71,7 +71,7 @@ namespace SystemManagement.Dto
 
 		public int? Sex { get; set; }
 
-		public bool? Status { get; set; }
+		public int Status { get; set; }
 
 		public int? Version { get; set; }
 	}

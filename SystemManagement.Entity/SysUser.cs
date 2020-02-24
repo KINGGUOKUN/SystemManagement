@@ -114,7 +114,7 @@ namespace SystemManagement.Entity
 		public int Sex { get; set; }
 
 		[Column("Status")]
-		public bool Status { get; set; }
+		public int Status { get; set; }
 
 		[Column("Version")]
 		public int? Version { get; set; }

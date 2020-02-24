@@ -26,5 +26,29 @@ namespace SystemManagement.Controllers
         {
             return await _userService.SearchUsers(searchModel);
         }
+
+        [HttpPost]
+        public async Task SaveUser(SysUserDto userDto)
+        {
+            await _userService.SaveUser(userDto);
+        }
+
+        [HttpDelete]
+        public async Task RemoveUser(long ID)
+        {
+            await _userService.RemoveUser(ID);
+        }
+
+        [HttpPut("setRole")]
+        public async Task SetRole(long userId, string roleIds)
+        {
+            await _userService.SetRole(userId, roleIds);
+        }
+
+        [HttpPut("changeStatus/{userId}")]
+        public async Task ChangeStatus(long userId)
+        {
+            await _userService.ChangeStatus(userId);
+        }
     }
 }
