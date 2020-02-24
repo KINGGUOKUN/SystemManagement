@@ -10,7 +10,7 @@ namespace SystemManagement.Entity
 	/// </summary>
 	[Table("SysUser")]
 	[Description("账号")]
-	public class SysUser
+	public class SysUser: BaseEntity<long>
 	{
 		/// <summary>
 		/// 账户
@@ -27,20 +27,6 @@ namespace SystemManagement.Entity
 		[Column("Birthday")]
 		public DateTime? Birthday { get; set; }
 
-		/// <summary>
-		/// 创建人
-		/// </summary>
-		[Description("创建人")]
-		[Column("CreateBy")]
-		public long? CreateBy { get; set; }
-
-		/// <summary>
-		/// 创建时间/注册时间
-		/// </summary>
-		[Description("创建时间/注册时间")]
-		[Column("CreateTime")]
-		public DateTime? CreateTime { get; set; }
-
 		[Column("DeptId")]
 		public long? DeptId { get; set; }
 
@@ -54,21 +40,8 @@ namespace SystemManagement.Entity
 
 		[Key]
 		[Column("ID")]
-		public long ID { get; set; }
-
-		/// <summary>
-		/// 最后更新人
-		/// </summary>
-		[Description("最后更新人")]
-		[Column("ModifyBy")]
-		public long? ModifyBy { get; set; }
-
-		/// <summary>
-		/// 最后更新时间
-		/// </summary>
-		[Description("最后更新时间")]
-		[Column("ModifyTime")]
-		public DateTime? ModifyTime { get; set; }
+		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+		public new long ID { get; set; }
 
 		/// <summary>
 		/// 姓名

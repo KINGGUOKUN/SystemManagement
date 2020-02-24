@@ -4,22 +4,12 @@ using System.Text;
 
 namespace SystemManagement.Dto
 {
-	public class SysTaskDto
+	public class SysTaskDto : BaseDto<long>
 	{
 		/// <summary>
 		/// 是否允许并发
 		/// </summary>
 		public bool Concurrent { get; set; }
-
-		/// <summary>
-		/// 创建人
-		/// </summary>
-		public long CreateBy { get; set; }
-
-		/// <summary>
-		/// 创建时间/注册时间
-		/// </summary>
-		public DateTime? CreateTime { get; set; }
 
 		/// <summary>
 		/// 定时规则
@@ -46,8 +36,6 @@ namespace SystemManagement.Dto
 		/// </summary>
 		public string ExecResult { get; set; }
 
-		public long ID { get; set; }
-
 		/// <summary>
 		/// 执行类
 		/// </summary>
@@ -57,16 +45,6 @@ namespace SystemManagement.Dto
 		/// 任务组名
 		/// </summary>
 		public string JobGroup { get; set; }
-
-		/// <summary>
-		/// 最后更新人
-		/// </summary>
-		public long? ModifyBy { get; set; }
-
-		/// <summary>
-		/// 最后更新时间
-		/// </summary>
-		public DateTime? ModifyTime { get; set; }
 
 		/// <summary>
 		/// 任务名

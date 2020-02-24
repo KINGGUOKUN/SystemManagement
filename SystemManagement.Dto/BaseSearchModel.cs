@@ -4,15 +4,15 @@ using System.Text;
 
 namespace SystemManagement.Dto
 {
-    public class UserSearchModel : BaseSearchModel
+    public class BaseSearchModel
     {
-        public string Name
-        { 
+        public int PageIndex
+        {
             get;
             set;
         }
 
-        public string Account
+        public int PageSize
         {
             get;
             set;

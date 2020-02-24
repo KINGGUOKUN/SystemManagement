@@ -10,7 +10,7 @@ namespace SystemManagement.Entity
 	/// </summary>
 	[Table("SysTask")]
 	[Description("定时任务")]
-	public class SysTask
+	public class SysTask : BaseEntity<long>
 	{
 		/// <summary>
 		/// 是否允许并发
@@ -18,20 +18,6 @@ namespace SystemManagement.Entity
 		[Description("是否允许并发")]
 		[Column("Concurrent")]
 		public bool? Concurrent { get; set; }
-
-		/// <summary>
-		/// 创建人
-		/// </summary>
-		[Description("创建人")]
-		[Column("CreateBy")]
-		public long? CreateBy { get; set; }
-
-		/// <summary>
-		/// 创建时间/注册时间
-		/// </summary>
-		[Description("创建时间/注册时间")]
-		[Column("CreateTime")]
-		public DateTime? CreateTime { get; set; }
 
 		/// <summary>
 		/// 定时规则
@@ -71,10 +57,6 @@ namespace SystemManagement.Entity
 		[Column("ExecResult")]
 		public string ExecResult { get; set; }
 
-		[Key]
-		[Column("ID")]
-		public long ID { get; set; }
-
 		/// <summary>
 		/// 执行类
 		/// </summary>
@@ -90,20 +72,6 @@ namespace SystemManagement.Entity
 		[StringLength(50)]
 		[Column("JobGroup")]
 		public string JobGroup { get; set; }
-
-		/// <summary>
-		/// 最后更新人
-		/// </summary>
-		[Description("最后更新人")]
-		[Column("ModifyBy")]
-		public long? ModifyBy { get; set; }
-
-		/// <summary>
-		/// 最后更新时间
-		/// </summary>
-		[Description("最后更新时间")]
-		[Column("ModifyTime")]
-		public DateTime? ModifyTime { get; set; }
 
 		/// <summary>
 		/// 任务名

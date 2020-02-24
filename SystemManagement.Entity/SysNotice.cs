@@ -10,27 +10,11 @@ namespace SystemManagement.Entity
 	/// </summary>
 	[Table("SysNotice")]
 	[Description("通知")]
-	public class SysNotice
+	public class SysNotice : BaseEntity<long>
 	{
 		[StringLength(255)]
 		[Column("Content")]
 		public string Content { get; set; }
-
-		[Column("CreateBy")]
-		public long? CreateBy { get; set; }
-
-		[Column("CreateTime")]
-		public DateTime? CreateTime { get; set; }
-
-		[Key]
-		[Column("ID")]
-		public long ID { get; set; }
-
-		[Column("ModifyBy")]
-		public long? ModifyBy { get; set; }
-
-		[Column("ModifyTime")]
-		public DateTime? ModifyTime { get; set; }
 
 		[StringLength(255)]
 		[Column("Title")]

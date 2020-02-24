@@ -10,7 +10,7 @@ namespace SystemManagement.Entity
 	/// </summary>
 	[Table("SysMenu")]
 	[Description("菜单")]
-	public class SysMenu
+	public class SysMenu : BaseEntity<long>
 	{
 		/// <summary>
 		/// 编号
@@ -29,20 +29,6 @@ namespace SystemManagement.Entity
 		public string Component { get; set; }
 
 		/// <summary>
-		/// 创建人
-		/// </summary>
-		[Description("创建人")]
-		[Column("CreateBy")]
-		public long? CreateBy { get; set; }
-
-		/// <summary>
-		/// 创建时间/注册时间
-		/// </summary>
-		[Description("创建时间/注册时间")]
-		[Column("CreateTime")]
-		public DateTime? CreateTime { get; set; }
-
-		/// <summary>
 		/// 是否隐藏
 		/// </summary>
 		[Description("是否隐藏")]
@@ -56,10 +42,6 @@ namespace SystemManagement.Entity
 		[StringLength(32)]
 		[Column("Icon")]
 		public string Icon { get; set; }
-
-		[Key]
-		[Column("ID")]
-		public long ID { get; set; }
 
 		/// <summary>
 		/// 是否是菜单1:菜单,0:按钮
@@ -81,20 +63,6 @@ namespace SystemManagement.Entity
 		[Description("级别")]
 		[Column("Levels")]
 		public int Levels { get; set; }
-
-		/// <summary>
-		/// 最后更新人
-		/// </summary>
-		[Description("最后更新人")]
-		[Column("ModifyBy")]
-		public long? ModifyBy { get; set; }
-
-		/// <summary>
-		/// 最后更新时间
-		/// </summary>
-		[Description("最后更新时间")]
-		[Column("ModifyTime")]
-		public DateTime? ModifyTime { get; set; }
 
 		/// <summary>
 		/// 名称
