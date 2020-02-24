@@ -111,10 +111,10 @@ namespace SystemManagement.Entity
 		public string Salt { get; set; }
 
 		[Column("Sex")]
-		public int? Sex { get; set; }
+		public int Sex { get; set; }
 
 		[Column("Status")]
-		public bool? Status { get; set; }
+		public bool Status { get; set; }
 
 		[Column("Version")]
 		public int? Version { get; set; }

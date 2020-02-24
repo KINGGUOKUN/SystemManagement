@@ -2,8 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using SystemManagement.Common;
 using SystemManagement.Dto;
 using SystemManagement.Entity;
+using WeihanLi.Common.Models;
 
 namespace SystemManagement.Service
 {
@@ -11,6 +13,7 @@ namespace SystemManagement.Service
     {
         public SystemManagementProfile()
         {
+            CreateMap(typeof(IPagedListModel<>), typeof(PagedModel<>));
             CreateMap<SysCfg, SysCfgDto>();
             CreateMap<SysDept, SysDeptDto>();
             CreateMap<SysDict, SysDictDto>();
