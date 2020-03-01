@@ -27,13 +27,10 @@ export function remove(roleId) {
   })
 }
 
-export  function roleTreeListByIdUser(idUser){
+export  function roleTreeListByUserId(userId){
   return request({
-    url: '/role/roleTreeListByIdUser',
-    method: 'get',
-    params: {
-      idUser: idUser
-    }
+    url: `/role/roleTreeListByUserId/${userId}`,
+    method: 'get'
   })
 }
 

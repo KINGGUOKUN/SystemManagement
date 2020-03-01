@@ -99,7 +99,8 @@ namespace SystemManagement
                 {
                     policy.WithOrigins(Configuration.GetValue<string>("CorsHosts"))
                     .AllowAnyHeader()
-                    .AllowAnyMethod();
+                    .AllowAnyMethod()
+                    .AllowCredentials();
                 });
             });
 

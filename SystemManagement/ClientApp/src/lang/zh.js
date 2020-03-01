@@ -38,7 +38,7 @@ export default {
     size: '布局大小'
   },
   login: {
-    title: 'web-flash',
+    title: 'XXX管理系统',
     errorAccount:'请输入5到32位的数字和字母',
     errorPassword:'密码至少位5位',
     logIn: '登录',
