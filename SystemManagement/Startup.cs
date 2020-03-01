@@ -50,7 +50,8 @@ namespace SystemManagement
                  });
 
             services.AddDbContextPool<SystemManageDbContext>(options => 
-                options.UseMySql(Configuration.GetConnectionString("Default"), mySqlOptions => 
+                options.UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole().AddDebug()))
+                    .UseMySql(Configuration.GetConnectionString("Default"), mySqlOptions => 
                     mySqlOptions.ServerVersion(new ServerVersion(new Version(8, 0, 18), ServerType.MySql))
             ));
 

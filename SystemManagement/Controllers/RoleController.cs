@@ -27,9 +27,9 @@ namespace SystemManagement.Controllers
         }
 
         [HttpGet("roleTreeListByIdUser/{roleId}")]
-        public async Task GetRoleTreeListByIdUser(long roleId)
+        public async Task GetRoleTreeListByUserId(long userId)
         {
-            await _roleService.GetRoleTreeListByIdUser(roleId);
+            await _roleService.GetRoleTreeListByUserId(userId);
         }
 
         [HttpDelete("{roleId}")]

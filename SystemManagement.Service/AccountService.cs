@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,19 +20,57 @@ namespace SystemManagement.Service
         private readonly IMapper _mapper;
         private readonly SysUserDto _currentUser;
         private readonly IUserRepository _userRepository;
+        private readonly IDeptRepository _deptRepository;
+        private readonly IRoleRepository _roleRepository;
+        private readonly IMenuRepository _menuRepository;
+        private readonly IRelationRepository _relationRepository;
 
-        public AccountService(IMapper mapper, SysUserDto currentUser, IUserRepository userRepository)
+        public AccountService(IMapper mapper, 
+            SysUserDto currentUser, 
+            IUserRepository userRepository, 
+            IDeptRepository deptRepository, 
+            IRoleRepository roleRepository, 
+            IMenuRepository menuRepository, 
+            IRelationRepository relationRepository)
         {
             _mapper = mapper;
             _currentUser = currentUser;
             _userRepository = userRepository;
+            _deptRepository = deptRepository;
+            _roleRepository = roleRepository;
+            _menuRepository = menuRepository;
+            _relationRepository = relationRepository;
         }
 
-        public async Task<SysUserDto> GetCurrentUserInfo()
+        public async Task<UserContext> GetCurrentUserInfo()
         {
             var user = await _userRepository.FetchAsync(x => x.ID == _currentUser.ID);
+            var dept = await _deptRepository.FetchAsync(x => x.ID == _currentUser.DeptId);
+            UserContext userContext = new UserContext
+            {
+                Name = user.Name,
+                Role = "admin"
+            };
+            userContext.Profile = _mapper.Map<UserProfile>(user);
+            userContext.Profile.Dept = dept.FullName;
+            if (!string.IsNullOrWhiteSpace(user.RoleId))
+            {
+                var roleIds = user.RoleId.Split(',').Select(x => long.Parse(x));
+                var roles = await _roleRepository.SelectAsync(x => roleIds.Contains(x.ID));
+                foreach (var role in roles)
+                {
+                    userContext.Roles.Add(role.Tips);
+                    userContext.Profile.Roles.Add(role.Name);
+                }
 
-            return _mapper.Map<SysUserDto>(user);
+                var roleMenus = await _menuRepository.GetMenusByRoleIds(roleIds.ToArray(), true);
+                if (roleMenus.Any())
+                {
+                    userContext.Permissions.AddRange(roleMenus.Select(x => x.Url).Distinct());
+                }
+            }
+
+            return userContext;
         }
 
         public async Task UpdatePassword(ChangePasswordDto passwordDto)

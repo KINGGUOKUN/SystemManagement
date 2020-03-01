@@ -27,6 +27,11 @@ namespace SystemManagement.Service
             CreateMap<SysTask, SysTaskDto>();
             CreateMap<SysTaskLog, SysTaskLogDto>();
             CreateMap<SysUser, SysUserDto>();
+            CreateMap<SysUserDto, SysUser>();
+            CreateMap<SysMenu, RouterMenu>();
+            CreateMap<SysUser, UserProfile>();
+            CreateMap<SysNotice, SysNoticeDto>();
+            CreateMap<SysDept, DeptNode>();
         }
     }
 }

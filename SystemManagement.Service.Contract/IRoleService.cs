@@ -15,7 +15,7 @@ namespace SystemManagement.Service.Contract
 
         Task RemoveRole(long roleId);
 
-        Task GetRoleTreeListByIdUser(long roleId);
+        Task<dynamic> GetRoleTreeListByUserId(long UserId);
 
         Task SavePermisson(long roleId, string permissions);
     }

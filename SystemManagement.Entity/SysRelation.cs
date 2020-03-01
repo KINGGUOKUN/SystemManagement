@@ -17,9 +17,9 @@ namespace SystemManagement.Entity
 		public long ID { get; set; }
 
 		[Column("MenuId")]
-		public long? MenuId { get; set; }
+		public long MenuId { get; set; }
 
 		[Column("RoleId")]
-		public long? RoleId { get; set; }
+		public long RoleId { get; set; }
 	}
 }

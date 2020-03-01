@@ -74,7 +74,7 @@ namespace SystemManagement.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("info")]
-        public async Task<SysUserDto> GetCurrentUserInfo()
+        public async Task<UserContext> GetCurrentUserInfo()
         {
             return await _accountService.GetCurrentUserInfo();
         }

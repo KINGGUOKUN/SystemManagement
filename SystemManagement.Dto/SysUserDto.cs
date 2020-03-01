@@ -17,6 +17,8 @@ namespace SystemManagement.Dto
 
 		public long? DeptId { get; set; }
 
+		public string DeptName { get; set; }
+
 		/// <summary>
 		/// email
 		/// </summary>
@@ -41,6 +43,8 @@ namespace SystemManagement.Dto
 		/// 角色id列表，以逗号分隔
 		/// </summary>
 		public string RoleId { get; set; }
+
+		public string RoleName { get; set; }
 
 		/// <summary>
 		/// 密码盐

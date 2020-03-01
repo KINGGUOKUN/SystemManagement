@@ -33,16 +33,16 @@ namespace SystemManagement.Controllers
             await _userService.SaveUser(userDto);
         }
 
-        [HttpDelete]
-        public async Task RemoveUser(long ID)
+        [HttpDelete("{userId}")]
+        public async Task RemoveUser(long userId)
         {
-            await _userService.RemoveUser(ID);
+            await _userService.RemoveUser(userId);
         }
 
         [HttpPut("setRole")]
-        public async Task SetRole(long userId, string roleIds)
+        public async Task SetRole(SysUserDto userDto)
         {
-            await _userService.SetRole(userId, roleIds);
+            await _userService.SetRole(userDto.ID, userDto.RoleId);
         }
 
         [HttpPut("changeStatus/{userId}")]

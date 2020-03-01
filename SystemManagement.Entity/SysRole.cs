@@ -23,7 +23,7 @@ namespace SystemManagement.Entity
 		public int? Num { get; set; }
 
 		[Column("Pid")]
-		public long? Pid { get; set; }
+		public long? PID { get; set; }
 
 		[StringLength(255)]
 		[Column("Tips")]

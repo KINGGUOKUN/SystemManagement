@@ -11,6 +11,7 @@ using SystemManagement.Service.Contract;
 using WeihanLi.Common.Helpers;
 using WeihanLi.Extensions;
 using WeihanLi.EntityFramework;
+using System.Collections.Generic;
 
 namespace SystemManagement.Service
 {
@@ -19,14 +20,20 @@ namespace SystemManagement.Service
         private readonly IMapper _mapper;
         private readonly SysUserDto _currentUser;
         private readonly IUserRepository _userRepository;
+        private readonly IDeptRepository _deptRepository;
+        private readonly IRoleRepository _roleRepository;
 
         public UserService(IMapper mapper, 
-            SysUserDto currentUser,
-            IUserRepository userRepository)
+            SysUserDto currentUser, 
+            IUserRepository userRepository, 
+            IDeptRepository deptRepository, 
+            IRoleRepository roleRepository)
         {
             _mapper = mapper;
             _currentUser = currentUser;
             _userRepository = userRepository;
+            _deptRepository = deptRepository;
+            _roleRepository = roleRepository;
         }
 
         public async Task ChangeStatus(long userId)
@@ -71,15 +78,21 @@ namespace SystemManagement.Service
                 user.ModifyBy = _currentUser.ID;
                 user.ModifyTime = DateTime.Now;
                 await _userRepository.UpdateAsync(user, 
-                    x => x.Account, 
                     x => x.Name, 
-                    x => x.Email);
+                    x => x.DeptId,
+                    x => x.Sex,
+                    x => x.Phone,
+                    x => x.Email,
+                    x => x.Birthday,
+                    x => x.Status,
+                    x => x.ModifyBy,
+                    x => x.ModifyTime);
             }
         }
 
         public async Task<PagedModel<SysUserDto>> SearchUsers(UserSearchModel searchModel)
         {
-            Expression<Func<SysUser, bool>> whereCondition = x => x.Status == (int)ManageStatus.Enabled;
+            Expression<Func<SysUser, bool>> whereCondition = x => x.Status > 0;
             if (!string.IsNullOrWhiteSpace(searchModel.Account))
             {
                 whereCondition = whereCondition.And(x => x.Account.Contains(searchModel.Account));
@@ -91,6 +104,19 @@ namespace SystemManagement.Service
             }
 
             var pagedModel = await _userRepository.PagedAsync(searchModel.PageIndex, searchModel.PageSize, whereCondition, x => x.ID);
+            var result = _mapper.Map<PagedModel<SysUserDto>>(pagedModel);
+            if (result.Count > 0)
+            {
+                var depts = await _deptRepository.SelectAsync(x => true);
+                var roles = await _roleRepository.SelectAsync(x => true);
+                foreach (var user in result.Data)
+                {
+                    user.DeptName = depts.FirstOrDefault(x => x.ID == user.DeptId)?.FullName;
+                    var roleIds = string.IsNullOrWhiteSpace(user.RoleId) ? new List<long>()
+                        : user.RoleId.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(x => long.Parse(x));
+                    user.RoleName = string.Join(',', roles.Where(x => roleIds.Contains(x.ID)).Select(x => x.Name));
+                }
+            }
 
             return _mapper.Map<PagedModel<SysUserDto>>(pagedModel);
         }
