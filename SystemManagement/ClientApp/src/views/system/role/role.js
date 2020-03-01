@@ -87,11 +87,10 @@ export default {
     },
     fetchData() {
       this.listLoading = true
-      getList(this.listQuery).then(response => {
-        console.log(response.data)
-        this.list = response.data
+      getList(this.listQuery).then(data => {
+        this.list = data
         this.listLoading = false
-        this.total = response.data.total
+        this.total = data.length
       })
     },
     search() {

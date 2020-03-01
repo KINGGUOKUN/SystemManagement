@@ -34,7 +34,8 @@
         <template slot-scope="scope">
           {{scope.row.tips}}
         </template>
-      </el-table-column>
+      </el-table-column>      
+      <!--
       <el-table-column label="所在部门">
         <template slot-scope="scope">
           {{scope.row.deptName}}
@@ -45,7 +46,7 @@
           {{scope.row.pName}}
         </template>
       </el-table-column>
-
+      -->
     </el-table>
 
 

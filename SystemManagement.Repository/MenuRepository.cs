@@ -24,7 +24,7 @@ namespace SystemManagement.Repository
             {
                 menus = from r in DbContext.Set<SysRelation>()
                         join m in DbContext.Set<SysMenu>() on r.MenuId equals m.ID
-                        where roleIds.Contains(r.ID) && m.Status
+                        where roleIds.Contains(r.RoleId) && m.Status
                         select m;
 
             }
@@ -32,7 +32,7 @@ namespace SystemManagement.Repository
             {
                 menus = from r in DbContext.Set<SysRelation>()
                         join m in DbContext.Set<SysMenu>() on r.MenuId equals m.ID
-                        where roleIds.Contains(r.ID)
+                        where roleIds.Contains(r.RoleId)
                         select m;
             }
 

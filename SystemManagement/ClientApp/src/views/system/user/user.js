@@ -94,9 +94,9 @@ export default {
     fetchData() {
       this.listLoading = true
       getList(this.listQuery).then(response => {
-        this.list = response.data.records
+        this.list = response.data
         this.listLoading = false
-        this.total = response.data.total
+        this.total = response.totalCount
       })
     },
     search() {

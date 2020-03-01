@@ -53,7 +53,21 @@ namespace SystemManagement.Dto
 
 		public int? Sex { get; set; }
 
-		public int Status { get; set; }
+        public string SexName
+        {
+            get
+            {
+                string result = "未知";
+                if (this.Sex.HasValue)
+                {
+                    result = this.Sex.Value == 1 ? "男" : "女";
+                }
+
+                return result;
+            }
+        }
+
+        public int Status { get; set; }
 
 		public int? Version { get; set; }
 	}

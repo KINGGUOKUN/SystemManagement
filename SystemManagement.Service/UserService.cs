@@ -118,7 +118,7 @@ namespace SystemManagement.Service
                 }
             }
 
-            return _mapper.Map<PagedModel<SysUserDto>>(pagedModel);
+            return result;
         }
 
         public async Task SetRole(long userId, string roleIds)
