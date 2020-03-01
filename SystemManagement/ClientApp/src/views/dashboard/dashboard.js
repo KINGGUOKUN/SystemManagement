@@ -178,9 +178,9 @@ export default {
     fetchData() {
       this.listLoading = true
       const self = this
-      getList(self.listQuery).then(response => {
-        for (var i = 0; i < response.data.length; i++) {
-          var notice = response.data[i]
+      getList(self.listQuery).then(data => {
+        for (var i = 0; i < data.length; i++) {
+          var notice = data[i]
           self.$notify({
             title: notice.title,
             message: notice.content,

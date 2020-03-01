@@ -45,7 +45,7 @@ namespace SystemManagement.Service
         public async Task<UserContext> GetCurrentUserInfo()
         {
             var user = await _userRepository.FetchAsync(x => x.ID == _currentUser.ID);
-            var dept = await _deptRepository.FetchAsync(x => x.ID == _currentUser.DeptId);
+            var dept = await _deptRepository.FetchAsync(x => x.ID == user.DeptId);
             UserContext userContext = new UserContext
             {
                 Name = user.Name,
