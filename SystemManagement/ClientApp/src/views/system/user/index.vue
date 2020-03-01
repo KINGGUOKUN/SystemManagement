@@ -46,12 +46,12 @@
       </el-table-column>
       <el-table-column label="性别">
         <template slot-scope="scope">
-          {{scope.row.sexName}}
+          {{ scope.row.sexName }}
         </template>
       </el-table-column>
       <el-table-column label="角色">
         <template slot-scope="scope">
-          {{scope.row.roleName}}
+          {{ scope.row.roleName }}
         </template>
       </el-table-column>
       <el-table-column label="部门">
@@ -79,7 +79,6 @@
           <el-switch v-model="scope.row.status==1" @change="changeUserStatus(scope.row)"></el-switch>
         </template>
       </el-table-column>
-
 
     </el-table>
 
