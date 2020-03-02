@@ -26,7 +26,7 @@ namespace SystemManagement.Service
 
         public async Task DeleteDept(long deptId)
         {
-            var dept = await _deptRepository.FindAsync(deptId);
+            var dept = await _deptRepository.FetchAsync(x => x.ID == deptId);
             await _deptRepository.DeleteAsync(x => x.Pids.Contains($"[{dept.ID}]"));
             await _deptRepository.DeleteAsync(dept);
         }
@@ -78,7 +78,7 @@ namespace SystemManagement.Service
             }
             else
             {
-                var oldDept = await _deptRepository.FindAsync(deptDto.ID);
+                var oldDept = await _deptRepository.FetchAsync(x => x.ID == deptDto.ID);
                 oldDept.Pid = deptDto.Pid;
                 oldDept.SimpleName = deptDto.SimpleName;
                 oldDept.FullName = deptDto.FullName;
@@ -94,7 +94,7 @@ namespace SystemManagement.Service
         {
             if (sysDept.Pid.HasValue && sysDept.Pid.Value > 0)
             {
-                var dept = await _deptRepository.FindAsync(sysDept.Pid.Value);
+                var dept = await _deptRepository.FetchAsync(x => x.ID == sysDept.Pid.Value);
                 string pids = dept?.Pids ?? "";
                 sysDept.Pids = $"{pids}[{sysDept.Pid}],";
             }

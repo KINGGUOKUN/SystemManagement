@@ -11,13 +11,13 @@
     border>
       <el-table-column label="简称" >
         <template slot-scope="scope">
-          <el-button type="text" @click="edit(scope.row)">{{scope.row.simplename}}</el-button>
+          <el-button type="text" @click="edit(scope.row)">{{scope.row.simpleName}}</el-button>
 
         </template>
       </el-table-column>
       <el-table-column label="全称" >
         <template slot-scope="scope">
-          <span >{{scope.row.fullname}}</span>
+          <span >{{scope.row.fullName}}</span>
         </template>
       </el-table-column>
       <el-table-column label="顺序" >
@@ -39,13 +39,13 @@
       <el-form ref="form" :model="form" :rules="rules" label-width="120px">
         <el-row>
           <el-col :span="12">
-            <el-form-item label="名称" prop="simplename">
-              <el-input v-model="form.simplename" minlength=1></el-input>
+            <el-form-item label="名称" prop="simpleName">
+              <el-input v-model="form.simpleName" minlength=1></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="12">
-            <el-form-item label="全称" prop="fullname">
-              <el-input v-model="form.fullname"  minlength=1></el-input>
+            <el-form-item label="全称" prop="fullName">
+              <el-input v-model="form.fullName"  minlength=1></el-input>
             </el-form-item>
           </el-col>
 

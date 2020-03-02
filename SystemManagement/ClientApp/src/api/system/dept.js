@@ -14,20 +14,17 @@ export function list() {
   })
 }
 
-export function save(params) {
+export function save(data) {
   return request({
     url: '/dept',
     method: 'post',
-    params: params
+    data
   })
 }
 
 export function del(id) {
   return request({
-    url: '/dept',
-    method: 'delete',
-    params: {
-      id: id
-    }
+    url: `/dept/${id}`,
+    method: 'delete'
   })
 }

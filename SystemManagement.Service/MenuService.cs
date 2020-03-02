@@ -33,9 +33,9 @@ namespace SystemManagement.Service
 
         public async Task DeleteMenu(long menuId)
         {
-            var menu = await _menuRepository.FindAsync(menuId);
+            var menu = await _menuRepository.FetchAsync(x => x.ID == menuId);
             await _menuRepository.DeleteAsync(x => x.PCodes.Contains($"[{menu.Code}]"));
-            await _menuRepository.DeleteAsync(x => x.ID == menuId);
+            await _menuRepository.DeleteAsync(menu);
         }
 
         public async Task<List<MenuNode>> GetMenus()
@@ -105,7 +105,7 @@ namespace SystemManagement.Service
                 }
 
                 var dictNodes = routerMenus.ToDictionary(x => x.ID);
-                foreach (var pair in dictNodes)
+                foreach (var pair in dictNodes.OrderBy(x => x.Value.Num))
                 {
                     var currentNode = pair.Value;
                     if (currentNode.ParentId.HasValue && dictNodes.ContainsKey(currentNode.ParentId.Value))
