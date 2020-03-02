@@ -78,7 +78,7 @@
               <el-input v-model="form.name" minlength=1></el-input>
             </el-form-item>
           </el-col>
-
+          <!--
           <el-col :span="12">
             <el-form-item label="上级角色">
               <el-input
@@ -95,15 +95,15 @@
                        @node-click="handleRoleNodeClick"
                        class="input-tree">
               </el-tree>
-
             </el-form-item>
           </el-col>
+          -->
           <el-col :span="12">
             <el-form-item label="排序">
               <el-input v-model="form.num" type="number"></el-input>
             </el-form-item>
           </el-col>
-
+          <!--
           <el-col :span="12">
             <el-form-item label="所在部门">
               <el-input
@@ -120,10 +120,9 @@
                        @node-click="handleDeptNodeClick"
                        class="input-tree">
               </el-tree>
-
             </el-form-item>
           </el-col>
-
+          -->
 
         </el-row>
         <el-form-item>

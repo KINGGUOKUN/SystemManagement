@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SystemManagement.Common;
 using SystemManagement.Dto;
 using SystemManagement.Service.Contract;
 
@@ -21,12 +22,12 @@ namespace SystemManagement.Controllers
         }
 
         [HttpGet("list")]
-        public async Task<List<SysRoleDto>> SearchRoles(string roleName)
+        public async Task<PagedModel<SysRoleDto>> SearchRoles([FromQuery]RoleSearchModel searchModel)
         {
-            return await _roleService.SearchRoles(roleName);
+            return await _roleService.SearchRoles(searchModel);
         }
 
-        [HttpGet("roleTreeListByIdUser/{roleId}")]
+        [HttpGet("roleTreeListByIdUser/{userId}")]
         public async Task GetRoleTreeListByUserId(long userId)
         {
             await _roleService.GetRoleTreeListByUserId(userId);

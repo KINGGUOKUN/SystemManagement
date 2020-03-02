@@ -88,9 +88,9 @@ export default {
     fetchData() {
       this.listLoading = true
       getList(this.listQuery).then(data => {
-        this.list = data
+        this.list = data.data
         this.listLoading = false
-        this.total = data.length
+        this.total = data.totalCount
       })
     },
     search() {
@@ -126,14 +126,13 @@ export default {
       this.form = {
         tips: '',
         name: '',
-        deptid: '',
-        pid: 0,
-        id: '',
+        // deptid: '',
+        // pid: 0,
+        id: 0,
         version: '',
         deptName: '',
         pName: '',
         num: 1
-
       }
     },
     add() {
@@ -147,9 +146,9 @@ export default {
         if (valid) {
           save({
             id: this.form.id,
-            num: this.form.num,
-            deptid: this.form.deptid,
-            pid: this.form.pid,
+            num: parseInt(this.form.num),
+            // deptid: this.form.deptid,
+            // pid: this.form.pid,
             name: this.form.name,
             tips: this.form.tips
           }).then(response => {

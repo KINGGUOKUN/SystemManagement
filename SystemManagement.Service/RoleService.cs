@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using SystemManagement.Common;
@@ -10,6 +11,7 @@ using SystemManagement.Entity;
 using SystemManagement.Repository.Contract;
 using SystemManagement.Service.Contract;
 using WeihanLi.EntityFramework;
+using WeihanLi.Extensions;
 
 namespace SystemManagement.Service
 {
@@ -34,19 +36,17 @@ namespace SystemManagement.Service
             _relationRepository = relationRepository;
         }
 
-        public async Task<List<SysRoleDto>> SearchRoles(string roleName)
+        public async Task<PagedModel<SysRoleDto>> SearchRoles(RoleSearchModel searchModel)
         {
-            List<SysRole> roles = null;
-            if(string.IsNullOrWhiteSpace(roleName))
+            Expression<Func<SysRole, bool>> whereCondition = x => true;
+            if (!string.IsNullOrWhiteSpace(searchModel.RoleName))
             {
-                roles = await _roleRepository.GetAsync(q => q.WithPredict(x => true));
-            }
-            else
-            {
-                roles = await _roleRepository.GetAsync(q => q.WithPredict(x => x.Name.Contains(roleName)));
+                whereCondition = whereCondition.And(x => x.Name.Contains(searchModel.RoleName));
             }
 
-            return _mapper.Map<List<SysRoleDto>>(roles);
+            var pagedModel = await _roleRepository.PagedAsync(searchModel.PageIndex, searchModel.PageSize, whereCondition, x => x.ID, true);
+
+            return _mapper.Map<PagedModel<SysRoleDto>>(pagedModel);
         }
 
         public async Task<dynamic> GetRoleTreeListByUserId(long userId)

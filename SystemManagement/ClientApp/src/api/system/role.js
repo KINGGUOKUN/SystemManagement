@@ -9,11 +9,11 @@ export function getList(params) {
 }
 
 
-export function save(params) {
+export function save(data) {
   return request({
     url: '/role',
     method: 'post',
-    params
+    data
   })
 }
 

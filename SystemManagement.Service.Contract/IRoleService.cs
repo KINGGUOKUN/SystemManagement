@@ -9,7 +9,7 @@ namespace SystemManagement.Service.Contract
 {
     public interface IRoleService : IService
     {
-        Task<List<SysRoleDto>> SearchRoles(string roleName);
+        Task<PagedModel<SysRoleDto>> SearchRoles(RoleSearchModel searchModel);
 
         Task SaveRole(SysRoleDto roleDto);
 
