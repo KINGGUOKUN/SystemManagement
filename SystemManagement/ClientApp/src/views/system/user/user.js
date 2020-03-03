@@ -27,7 +27,7 @@ export default {
         data: [],
         defaultProps: {
           id: 'id',
-          label: 'simplename',
+          label: 'simpleName',
           children: 'children'
         }
       },
@@ -86,8 +86,8 @@ export default {
   },
   methods: {
     init() {
-      deptList().then(response => {
-        this.deptTree.data = response.data
+      deptList().then(data => {
+        this.deptTree.data = data
       })
       this.fetchData()
     },
@@ -188,6 +188,7 @@ export default {
               //冻结
               form.status = 2
             }
+            form.id = parseInt(form.id) || 0
             form.birthday = parseTime(form.birthday, '{y}-{m}-{d}')
             form.createtime = parseTime(form.createtime)
             saveUser(form).then(response => {
@@ -258,7 +259,7 @@ export default {
     },
     handleNodeClick(data, node) {
       this.form.deptid = data.id
-      this.form.deptName = data.simplename
+      this.form.deptName = data.simpleName
       this.deptTree.show = false
     },
 

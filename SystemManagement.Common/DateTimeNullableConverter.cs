@@ -9,7 +9,13 @@ namespace System.Text.Json
     {
         public override DateTime? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            return string.IsNullOrEmpty(reader.GetString()) ? default(DateTime?) : DateTime.Parse(reader.GetString());
+            var result = default(DateTime?);
+            if(DateTime.TryParse(reader.GetString(), out DateTime datetime))
+            {
+                result = datetime;
+            }
+
+            return result;
         }
 
         public override void Write(Utf8JsonWriter writer, DateTime? value, JsonSerializerOptions options)
