@@ -1,11 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
 using Autofac;
 using Autofac.Configuration;
 using AutoMapper;
@@ -22,9 +14,14 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using Pomelo.EntityFrameworkCore.MySql.Storage;
+using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
+using System.Security.Claims;
+using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
 using SystemManagement.Common;
-using SystemManagement.Dto;
-using SystemManagement.Repository;
 using SystemManagement.Repository.Contract;
 using SystemManagement.Service;
 
@@ -49,7 +46,7 @@ namespace SystemManagement
                      options.JsonSerializerOptions.Converters.Add(new DateTimeNullableConverter());
                  });
 
-            services.AddDbContextPool<SystemManageDbContext>(options => 
+            services.AddDbContext<SystemManageDbContext>(options => 
                 options.UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole().AddDebug()))
                     .UseMySql(Configuration.GetConnectionString("Default"), mySqlOptions => 
                     mySqlOptions.ServerVersion(new ServerVersion(new Version(8, 0, 18), ServerType.MySql))
@@ -58,10 +55,10 @@ namespace SystemManagement
             services.Configure<JWTConfig>(Configuration.GetSection("JWT"));
             var jwtConfig = Configuration.GetSection("JWT").Get<JWTConfig>();
             services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
+                {
+                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
                 .AddJwtBearer(options =>
                 {
                     options.TokenValidationParameters = new TokenValidationParameters
@@ -78,12 +75,13 @@ namespace SystemManagement
                     {
                         OnTokenValidated = context =>
                         {
-                            var currentUser = context.HttpContext.RequestServices.GetService<SysUserDto>();
+                            var userContext = context.HttpContext.RequestServices.GetService<UserContext>();
                             var claims = context.Principal.Claims;
-                            currentUser.ID = long.Parse(claims.First(x => x.Type == JwtRegisteredClaimNames.Sub).Value);
-                            currentUser.Name = claims.First(x => x.Type == ClaimTypes.Name).Value;
-                            currentUser.Email = claims.First(x => x.Type == JwtRegisteredClaimNames.Email).Value;
-                            currentUser.RoleId = claims.First(x => x.Type == ClaimTypes.Role).Value;
+                            userContext.ID = long.Parse(claims.First(x => x.Type == JwtRegisteredClaimNames.Sub).Value);
+                            userContext.Account = claims.First(x => x.Type == ClaimTypes.NameIdentifier).Value;
+                            userContext.Name = claims.First(x => x.Type == ClaimTypes.Name).Value;
+                            userContext.Email = claims.First(x => x.Type == JwtRegisteredClaimNames.Email).Value;
+                            userContext.RoleId = claims.First(x => x.Type == ClaimTypes.Role).Value;
 
                             return Task.CompletedTask;
                         }
@@ -106,7 +104,7 @@ namespace SystemManagement
 
             services.AddAutoMapper(typeof(SystemManagementProfile));
 
-            services.AddScoped<SysUserDto>();
+            services.AddScoped<UserContext>();
         }
 
         public void ConfigureContainer(ContainerBuilder builder)

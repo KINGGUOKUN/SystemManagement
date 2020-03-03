@@ -18,13 +18,13 @@ namespace SystemManagement.Service
     public class UserService : IUserService
     {
         private readonly IMapper _mapper;
-        private readonly SysUserDto _currentUser;
+        private readonly UserContext _currentUser;
         private readonly IUserRepository _userRepository;
         private readonly IDeptRepository _deptRepository;
         private readonly IRoleRepository _roleRepository;
 
-        public UserService(IMapper mapper, 
-            SysUserDto currentUser, 
+        public UserService(IMapper mapper,
+            UserContext currentUser, 
             IUserRepository userRepository, 
             IDeptRepository deptRepository, 
             IRoleRepository roleRepository)

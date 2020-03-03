@@ -18,13 +18,13 @@ namespace SystemManagement.Service
     public class RoleService : IRoleService
     {
         private readonly IMapper _mapper;
-        private readonly SysUserDto _currentUser;
+        private readonly UserContext _currentUser;
         private readonly IRoleRepository _roleRepository;
         private readonly IUserRepository _userRepository;
         private readonly IRelationRepository _relationRepository;
 
-        public RoleService(IMapper mapper, 
-            SysUserDto currentUser, 
+        public RoleService(IMapper mapper,
+            UserContext currentUser, 
             IRoleRepository roleRepository, 
             IUserRepository userRepository,
             IRelationRepository relationRepository)

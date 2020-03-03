@@ -10,7 +10,7 @@ namespace SystemManagement.Service.Contract
     {
         Task<Tuple<bool, SysUserDto>> ValidateCredentials(string account, string password);
 
-        Task<UserContext> GetCurrentUserInfo();
+        Task<UserInfo> GetCurrentUserInfo();
 
         Task UpdatePassword(ChangePasswordDto passwordDto);
     }

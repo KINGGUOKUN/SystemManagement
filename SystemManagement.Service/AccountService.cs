@@ -18,15 +18,15 @@ namespace SystemManagement.Service
     public class AccountService : IAccountService
     {
         private readonly IMapper _mapper;
-        private readonly SysUserDto _currentUser;
+        private readonly UserContext _currentUser;
         private readonly IUserRepository _userRepository;
         private readonly IDeptRepository _deptRepository;
         private readonly IRoleRepository _roleRepository;
         private readonly IMenuRepository _menuRepository;
         private readonly IRelationRepository _relationRepository;
 
-        public AccountService(IMapper mapper, 
-            SysUserDto currentUser, 
+        public AccountService(IMapper mapper,
+            UserContext currentUser, 
             IUserRepository userRepository, 
             IDeptRepository deptRepository, 
             IRoleRepository roleRepository, 
@@ -42,11 +42,11 @@ namespace SystemManagement.Service
             _relationRepository = relationRepository;
         }
 
-        public async Task<UserContext> GetCurrentUserInfo()
+        public async Task<UserInfo> GetCurrentUserInfo()
         {
             var user = await _userRepository.FetchAsync(x => x.ID == _currentUser.ID);
             var dept = await _deptRepository.FetchAsync(x => x.ID == user.DeptId);
-            UserContext userContext = new UserContext
+            UserInfo userContext = new UserInfo
             {
                 Name = user.Name,
                 Role = "admin"

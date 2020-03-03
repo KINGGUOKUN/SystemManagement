@@ -16,12 +16,12 @@ namespace SystemManagement.Service
     public class MenuService : IMenuService
     {
         private readonly IMapper _mapper;
-        private readonly SysUserDto _currentUser;
+        private readonly UserContext _currentUser;
         private readonly IMenuRepository _menuRepository;
         private readonly IRelationRepository _relationRepository;
 
-        public MenuService(IMapper mapper, 
-            SysUserDto currentUser, 
+        public MenuService(IMapper mapper,
+            UserContext currentUser, 
             IMenuRepository menuRepository, 
             IRelationRepository relationRepository)
         {

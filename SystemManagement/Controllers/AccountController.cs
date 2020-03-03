@@ -47,6 +47,7 @@ namespace SystemManagement.Controllers
             var user = validateResult.Item2;
             var claims = new Claim[]
             {
+                new Claim(ClaimTypes.NameIdentifier, user.Account),
                 new Claim(ClaimTypes.Name, user.Name),
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
                 new Claim(JwtRegisteredClaimNames.Sub, user.ID.ToString()),
@@ -74,7 +75,7 @@ namespace SystemManagement.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("info")]
-        public async Task<UserContext> GetCurrentUserInfo()
+        public async Task<UserInfo> GetCurrentUserInfo()
         {
             return await _accountService.GetCurrentUserInfo();
         }

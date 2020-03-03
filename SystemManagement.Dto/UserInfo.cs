@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SystemManagement.Dto
 {
-    public class UserContext
+    public class UserInfo
     {
         public string Name { get; set; }
 

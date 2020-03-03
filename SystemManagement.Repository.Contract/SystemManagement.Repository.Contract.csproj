@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SystemManagement.Common\SystemManagement.Common.csproj" />
     <ProjectReference Include="..\SystemManagement.Entity\SystemManagement.Entity.csproj" />
   </ItemGroup>
 
