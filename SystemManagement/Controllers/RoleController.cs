@@ -27,10 +27,10 @@ namespace SystemManagement.Controllers
             return await _roleService.SearchRoles(searchModel);
         }
 
-        [HttpGet("roleTreeListByIdUser/{userId}")]
-        public async Task GetRoleTreeListByUserId(long userId)
+        [HttpGet("roleTreeListByUserId/{userId}")]
+        public async Task<dynamic> GetRoleTreeListByUserId(long userId)
         {
-            await _roleService.GetRoleTreeListByUserId(userId);
+            return await _roleService.GetRoleTreeListByUserId(userId);
         }
 
         [HttpDelete("{roleId}")]

@@ -39,6 +39,7 @@ service.interceptors.response.use(
   },
   error => {
     console.log(error)
+    console.log(error.response)
     if(error.response.status === 401){
       store.dispatch('user/logout').then(()=>{
         router.replace({
@@ -49,7 +50,7 @@ service.interceptors.response.use(
       return
     }
     Message({
-      message: error.message,
+      message: error.response.data || error.message,
       type: 'error',
       duration: 5 * 1000
     })

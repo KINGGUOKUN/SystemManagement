@@ -55,7 +55,7 @@ namespace SystemManagement.Service
             IEnumerable<ZTreeNode<long, dynamic>> treeNodes = null;
             var user = await _userRepository.FetchAsync(x => x.ID == userId);
             var roles = await _roleRepository.SelectAsync(x => true);
-            var roleIds = user.RoleId.Split(',', StringSplitOptions.RemoveEmptyEntries)
+            var roleIds = user.RoleId?.Split(',', StringSplitOptions.RemoveEmptyEntries)
                 .Select(x => long.Parse(x)) ?? new List<long>();
             if (roles.Any())
             {

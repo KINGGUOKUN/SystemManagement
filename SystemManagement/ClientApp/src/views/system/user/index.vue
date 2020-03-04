@@ -181,7 +181,7 @@
     <el-dialog
       title="角色分配"
       :visible.sync="roleDialog.visible"
-      width="25%">
+      width="50%">
       <el-form>
         <el-row>
           <el-col :span="12">

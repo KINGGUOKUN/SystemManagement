@@ -68,8 +68,6 @@ namespace SystemManagement.Service
 
                 user.Salt = SecurityHelper.GenerateRandomCode(5);
                 user.Password = HashHelper.GetHashedString(HashType.MD5, user.Password, user.Salt);
-                user.CreateBy = _currentUser.ID;
-                user.CreateTime = DateTime.Now;
 
                 await _userRepository.InsertAsync(user);
             }
@@ -84,9 +82,7 @@ namespace SystemManagement.Service
                     x => x.Phone,
                     x => x.Email,
                     x => x.Birthday,
-                    x => x.Status,
-                    x => x.ModifyBy,
-                    x => x.ModifyTime);
+                    x => x.Status);
             }
         }
 
@@ -123,7 +119,7 @@ namespace SystemManagement.Service
 
         public async Task SetRole(long userId, string roleIds)
         {
-            if(userId == 1)
+            if(userId < 1)
             {
                 throw new BusinessException((int)ErrorCode.Forbidden, "禁止修改管理员角色");
             }

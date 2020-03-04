@@ -1,7 +1,7 @@
 import { deleteUser, getList, saveUser, remove, setRole, changeStatus } from '@/api/system/user'
 import { list as deptList } from '@/api/system/dept'
 import { parseTime } from '@/utils/index'
-import { roleTreeListByIdUser } from '@/api/system/role'
+import { roleTreeListByUserId } from '@/api/system/role'
 // 权限判断指令
 import permission from '@/directive/permission/index.js'
 
@@ -262,12 +262,11 @@ export default {
       this.form.deptName = data.simpleName
       this.deptTree.show = false
     },
-
     openRole() {
       if (this.checkSel()) {
-        roleTreeListByIdUser(this.selRow.id).then(response => {
-          this.roleDialog.roles = response.data.treeData
-          this.roleDialog.checkedRoleKeys = response.data.checkedIds
+        roleTreeListByUserId(this.selRow.id).then(data => {
+          this.roleDialog.roles = data.treeData
+          this.roleDialog.checkedRoleKeys = data.checkedIds
           this.roleDialog.visible = true
         })
       }
@@ -279,8 +278,8 @@ export default {
         roleIds += checkedRoleKeys[index] + ','
       }
       var data = {
-        userId: this.selRow.id,
-        roleIds: roleIds
+        id: this.selRow.id,
+        roleId: roleIds
       }
       setRole(data).then(response => {
         this.roleDialog.visible = false
