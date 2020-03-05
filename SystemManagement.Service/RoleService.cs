@@ -101,10 +101,10 @@ namespace SystemManagement.Service
 
         public async Task SavePermisson(long roleId, string permissions)
         {
-            await _relationRepository.DeleteAsync(x => x.ID == roleId);
+            await _relationRepository.DeleteAsync(x => x.RoleId == roleId);
 
-            string[] permissionIds = permissions.Split(',', StringSplitOptions.RemoveEmptyEntries);
-            foreach (var permissionId in permissions)
+            var permissionIds = permissions.Split(',', StringSplitOptions.RemoveEmptyEntries)?.Select(x => long.Parse(x));
+            foreach (var permissionId in permissionIds)
             {
                 SysRelation relation = new SysRelation
                 {

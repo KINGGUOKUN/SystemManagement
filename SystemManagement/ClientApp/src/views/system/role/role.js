@@ -211,9 +211,9 @@ export default {
     },
     openPermissions() {
       if (this.checkSel()) {
-        menuTreeListByRoleId(this.selRow.id).then(response => {
-          this.permissons = response.data.treeData
-          this.checkedPermissionKeys = response.data.checkedIds
+        menuTreeListByRoleId(this.selRow.id).then(data => {
+          this.permissons = data.treeData
+          this.checkedPermissionKeys = data.checkedIds
           this.permissonVisible = true
         })
       }
@@ -225,7 +225,7 @@ export default {
         menuIds += checkedNodes[index].id + ','
       }
       const data = {
-        roleId: this.selRow.id,
+        id: this.selRow.id,
         permissions: menuIds
       }
       savePermissons(data).then(response => {

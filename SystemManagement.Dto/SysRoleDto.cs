@@ -16,6 +16,8 @@ namespace SystemManagement.Dto
 
 		public string Tips { get; set; }
 
+		public string Permissions { get; set; }
+
 		public int? Version { get; set; }
 	}
 }

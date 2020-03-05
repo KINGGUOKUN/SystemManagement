@@ -19,11 +19,8 @@ export function save(data) {
 
 export function remove(roleId) {
   return request({
-    url: '/role',
-    method: 'delete',
-    params: {
-      roleId: roleId
-    }
+    url: `/role/${roleId}`,
+    method: 'delete'
   })
 }
 
@@ -35,10 +32,10 @@ export  function roleTreeListByUserId(userId){
 }
 
 
-export function savePermissons(params) {
+export function savePermissons(data) {
   return request({
     url: '/role/savePermisson',
     method: 'post',
-    params
+    data
   })
 }

@@ -124,8 +124,8 @@ namespace SystemManagement.Service
 
         public async Task<dynamic> GetMenuTreeListByRoleId(long roleId)
         {
-            var menuIds = await this.GetMenuIdsByRoleId(roleId);
-            List<ZTreeNode<long, dynamic>> roleTreeList = null;
+            var menuIds = await this.GetMenuIdsByRoleId(roleId) ?? new List<long>();
+            List<ZTreeNode<long, dynamic>> roleTreeList = new List<ZTreeNode<long, dynamic>>();
             List<SysMenu> menus = await _menuRepository.GetAsync(q => q.WithOrderBy(o => o.OrderBy(x => x.ID)));
             foreach (var menu in menus)
             {
@@ -161,7 +161,7 @@ namespace SystemManagement.Service
 
             return new
             {
-                treeData = nodes.Select(x => x.PID == 0),
+                treeData = nodes.Where(x => x.PID == 0),
                 checkedIds = roleTreeList.Where(x => x.Checked && x.PID != 0).Select(x => x.ID)
             };
         }

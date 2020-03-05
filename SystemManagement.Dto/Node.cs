@@ -14,6 +14,6 @@ namespace SystemManagement.Dto
 
         public bool Checked { get; set; }
 
-        public List<Node<T>> Children { get; set; }
+        public List<Node<T>> Children { get; private set; } = new List<Node<T>>();
     }
 }

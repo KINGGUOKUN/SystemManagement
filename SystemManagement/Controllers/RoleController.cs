@@ -40,9 +40,9 @@ namespace SystemManagement.Controllers
         }
 
         [HttpPost("savePermisson")]
-        public async Task SavePermisson(long roleId, string permissions)
+        public async Task SavePermisson(SysRoleDto roleDto)
         {
-            await _roleService.SavePermisson(roleId, permissions);
+            await _roleService.SavePermisson(roleDto.ID, roleDto.Permissions);
         }
 
         [HttpPost]

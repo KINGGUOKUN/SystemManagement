@@ -14,51 +14,24 @@ namespace SystemManagement.Service
         public SystemManagementProfile()
         {
             CreateMap(typeof(IPagedListModel<>), typeof(PagedModel<>));
-
-            CreateMap<SysCfg, SysCfgDto>();
-            CreateMap<SysCfgDto, SysCfg>();
-
-            CreateMap<SysDept, SysDeptDto>();
-            CreateMap<SysDeptDto, SysDept>();
+            CreateMap(typeof(ZTreeNode<,>), typeof(Node<>)).IgnoreAllPropertiesWithAnInaccessibleSetter();
+            CreateMap<SysCfg, SysCfgDto>().ReverseMap();
+            CreateMap<SysDept, SysDeptDto>().ReverseMap();
             CreateMap<SysDept, DeptNode>();
-
-            CreateMap<SysDict, SysDictDto>();
-            CreateMap<SysDictDto, SysDict>();
-
-            CreateMap<SysFileInfo, SysFileInfoDto>();
-            CreateMap<SysFileInfoDto, SysFileInfo>();
-
-            CreateMap<SysLoginLog, SysLoginLogDto>();
-            CreateMap<SysLoginLogDto, SysLoginLog>();
-
-            CreateMap<SysMenu, SysMenuDto>();
-            CreateMap<SysMenuDto, SysMenu>();
+            CreateMap<SysDict, SysDictDto>().ReverseMap();
+            CreateMap<SysFileInfo, SysFileInfoDto>().ReverseMap();
+            CreateMap<SysLoginLog, SysLoginLogDto>().ReverseMap();
+            CreateMap<SysMenu, SysMenuDto>().ReverseMap();
             CreateMap<SysMenu, RouterMenu>();
-
-            CreateMap<SysNotice, SysNoticeDto>();
-            CreateMap<SysNoticeDto, SysNoticeDto>();
-
-            CreateMap<SysOperationLog, SysOperationLogDto>();
-            CreateMap<SysOperationLogDto, SysOperationLog>();
-
-            CreateMap<SysRelation, SysRelationDto>();
-            CreateMap<SysRelationDto, SysRelation>();
-
-            CreateMap<SysRole, SysRoleDto>();
-            CreateMap<SysRoleDto, SysRole>();
-
-            CreateMap<SysTask, SysTaskDto>();
-            CreateMap<SysTaskDto, SysTask>();
-
-            CreateMap<SysTaskLog, SysTaskLogDto>();
-            CreateMap<SysTaskLogDto, SysTaskLog>();
-
-            CreateMap<SysUser, SysUserDto>();
-            CreateMap<SysUserDto, SysUser>();
+            CreateMap<SysNotice, SysNoticeDto>().ReverseMap();
+            CreateMap<SysOperationLog, SysOperationLogDto>().ReverseMap();
+            CreateMap<SysRelation, SysRelationDto>().ReverseMap();
+            CreateMap<SysRole, SysRoleDto>().ReverseMap();
+            CreateMap<SysTask, SysTaskDto>().ReverseMap();
+            CreateMap<SysTaskLog, SysTaskLogDto>().ReverseMap();
+            CreateMap<SysUser, SysUserDto>().ReverseMap();
             CreateMap<SysUser, UserProfile>();
-
-            CreateMap<SysNotice, SysNoticeDto>();
-            CreateMap<SysNoticeDto, SysNotice>();
+            CreateMap<SysNotice, SysNoticeDto>().ReverseMap();
         }
     }
 }

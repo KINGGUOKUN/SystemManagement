@@ -69,6 +69,8 @@ namespace SystemManagement.Dto
 
         public int Status { get; set; }
 
+		public string StatusName => this.Status == 1 ? "启用" : "禁用";
+
 		public int? Version { get; set; }
 	}
 }
