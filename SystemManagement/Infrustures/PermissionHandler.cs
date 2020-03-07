@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using SystemManagement.Service.Contract;
 
@@ -15,32 +16,31 @@ namespace Microsoft.AspNetCore.Authorization
             _menuService = menuService;
         }
 
-        protected override Task HandleRequirementAsync(
+        protected override async Task HandleRequirementAsync(
             AuthorizationHandlerContext context,
             PermissionRequirement requirement)
         {
-            //var roles = context.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Role).Value;
-            //if (roles.Contains(Guid.Empty.ToString()))
-            //{
-            //    context.Succeed(requirement);
-            //    return Task.CompletedTask;
-            //}
+            var roles = context.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Role).Value;
+            if (!string.IsNullOrWhiteSpace(roles))
+            {
+                var roleIds = roles.Split(',', StringSplitOptions.RemoveEmptyEntries)
+                    .Select(x => long.Parse(x));
+                if (roleIds.Contains(1))
+                {
+                    context.Succeed(requirement);
+                    return;
+                }
 
-            //var menus = _menuService.GetMenusByUserId(context.User.Identity.Name);
-            //if (menus.Any())
-            //{
-            //    var module = menus.FirstOrDefault(x => string.Equals(x.Name, requirement.Module));
-            //    if (module != null)
-            //    {
-            //        var button = menus.FirstOrDefault(x => x.ParentId == module.ID && string.Equals(x.Name, requirement.Button));
-            //        if (button != null)
-            //        {
-            //            context.Succeed(requirement);
-            //        }
-            //    }
-            //}
-
-            return Task.CompletedTask;
+                var menus = await _menuService.GetMenusByRoleIds(roleIds.ToArray());
+                if (menus.Any())
+                {
+                    var codes = menus.Select(x => x.Code.ToUpper());
+                    if (requirement.Codes.Any(x => codes.Contains(x.ToUpper())))
+                    {
+                        context.Succeed(requirement);
+                    }
+                }
+            }
         }
     }
 }

@@ -9,6 +9,7 @@ using SystemManagement.Service.Contract;
 
 namespace SystemManagement.Controllers
 {
+    [Permission("dept")]
     [Route("api/[controller]")]
     [ApiController]
     public class DeptController : ControllerBase
@@ -26,6 +27,7 @@ namespace SystemManagement.Controllers
             await _deptService.DeleteDept(deptId);
         }
 
+        [Permission("deptList")]
         [HttpGet("list")]
         public async Task<List<DeptNode>> GetDeptList()
         {            

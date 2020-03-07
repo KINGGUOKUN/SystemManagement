@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using System;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace Microsoft.AspNetCore.Mvc.Filters
@@ -21,7 +22,10 @@ namespace Microsoft.AspNetCore.Mvc.Filters
 
             if (!result.Succeeded)
             {
-                context.Result = new ForbidResult();
+                context.Result = new JsonResult("您没有此操作权限")
+                {
+                    StatusCode = (int)HttpStatusCode.Forbidden
+                };
             }
         }
     }

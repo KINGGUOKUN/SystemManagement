@@ -14,6 +14,8 @@ namespace SystemManagement.Service.Contract
 
         Task<dynamic> GetMenuTreeListByRoleId(long roleId);
 
+        Task<List<SysMenuDto>> GetMenusByRoleIds(long[] roleIds);
+
         Task SaveMenu(SysMenuDto menuDto);
 
         Task DeleteMenu(long menuId);

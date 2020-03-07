@@ -74,7 +74,7 @@ namespace SystemManagement.Service
         {
             List<RouterMenu> result = new List<RouterMenu>();
 
-            var roleIds = _currentUser.RoleId.Split(',').Select(x => long.Parse(x));
+            var roleIds = _currentUser.RoleId.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(x => long.Parse(x));
             var menus = await _menuRepository.GetMenusByRoleIds(roleIds.ToArray(), false);
             if (menus.Any())
             {
@@ -206,6 +206,13 @@ namespace SystemManagement.Service
             {
                 await _menuRepository.UpdateAsync(menu);
             }
+        }
+
+        public async Task<List<SysMenuDto>> GetMenusByRoleIds(long[] roleIds)
+        {
+            var menus = await _menuRepository.GetMenusByRoleIds(roleIds, true);
+
+            return _mapper.Map<List<SysMenuDto>>(menus);
         }
 
         private async Task<List<long>> GetMenuIdsByRoleId(long roleId)

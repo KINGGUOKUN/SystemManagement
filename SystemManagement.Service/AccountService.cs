@@ -55,7 +55,7 @@ namespace SystemManagement.Service
             userContext.Profile.Dept = dept.FullName;
             if (!string.IsNullOrWhiteSpace(user.RoleId))
             {
-                var roleIds = user.RoleId.Split(',').Select(x => long.Parse(x));
+                var roleIds = user.RoleId.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(x => long.Parse(x));
                 var roles = await _roleRepository.SelectAsync(x => roleIds.Contains(x.ID));
                 foreach (var role in roles)
                 {

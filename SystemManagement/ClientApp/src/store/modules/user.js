@@ -55,7 +55,6 @@ const actions = {
         if (!data) {
           reject('Verification failed, please Login again.')
         }
-        console.log('data',data)
         const { name, profile, permissions,roles } = data
         commit('SET_NAME', name)
         commit('SET_AVATAR', profile.avatar)

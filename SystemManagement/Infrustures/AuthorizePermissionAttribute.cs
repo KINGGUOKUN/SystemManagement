@@ -13,10 +13,10 @@ namespace Microsoft.AspNetCore.Mvc
     /// </summary>
     public class PermissionAttribute : TypeFilterAttribute
     {
-        public PermissionAttribute(string module, string button)
+        public PermissionAttribute(params string[] codes)
             : base(typeof(PermissionFilter))
         {
-            Arguments = new[] { new PermissionRequirement(module, button) };
+            Arguments = new[] { new PermissionRequirement(codes) };
         }
     }
 }
