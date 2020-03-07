@@ -25,7 +25,7 @@ export default {
         code: '',
         url: '',
         pcode: '',
-        ismenu: 1,
+        isMenu: true,
         num: 1
       },
       rules: {
@@ -57,8 +57,8 @@ export default {
     },
     fetchData() {
       this.listLoading = true
-      getList().then(response => {
-        this.data = response.data
+      getList().then(data => {
+        this.data = data
         this.listLoading = false
       })
     },
@@ -90,6 +90,7 @@ export default {
           const menuData = self.form
           delete menuData.parent
           delete menuData.children
+          menuData.num = parseInt(menuData.num)
           save(menuData).then(response => {
             this.$message({
               message: '提交成功',
@@ -106,14 +107,14 @@ export default {
     edit(row) {
       this.form = row
       if (row.isMenuName === '是') {
-        this.form.ismenu = 1
+        this.form.isMenu = true
       } else {
-        this.form.ismenu = 0
+        this.form.isMenu = false
       }
       if (row.statusName === '启用') {
-        this.form.status = 1
+        this.form.status = true
       } else {
-        this.form.status = 0
+        this.form.status = false
       }
       if (row.parent) {
         this.form.pcode = row.parent.code

@@ -40,6 +40,7 @@ namespace SystemManagement.Service
 
         public async Task<List<MenuNode>> GetMenus()
         {
+            var result = new List<MenuNode>();
             var menus = await _menuRepository.GetAsync(q => q.WithPredict(x => true)
             .WithOrderBy(o => o.OrderBy(x => x.Levels).ThenBy(x => x.Num)));
             var menuNodes = _mapper.Map<List<MenuNode>>(menus);
@@ -62,11 +63,11 @@ namespace SystemManagement.Service
                 }
                 else
                 {
-                    menuNodes.Add(currentNode);
+                    result.Add(currentNode);
                 }
             }
 
-            return menuNodes;
+            return result;
         }
 
         public async Task<List<RouterMenu>> GetMenusForRouter()

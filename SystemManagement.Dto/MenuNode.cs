@@ -18,7 +18,7 @@ namespace SystemManagement.Dto
 
         public bool IsMenu { get; set; }
 
-        public string IsMenuName { get; set; }
+        public string IsMenuName => this.IsMenu ? "是" : "否";
 
         public int Status { get; set; }
 

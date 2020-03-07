@@ -15,21 +15,18 @@ export function listForRouter(params) {
   })
 }
 
-export function save(params) {
+export function save(data) {
   return request({
     url: '/menu',
     method: 'post',
-    params: params
+    data
   })
 }
 
 export function delMenu(id) {
   return request({
-    url: '/menu',
-    method: 'delete',
-    params: {
-      id: id
-    }
+    url: `/menu/${id}`,
+    method: 'delete'
   })
 }
 export function menuTreeListByRoleId(roleId) {

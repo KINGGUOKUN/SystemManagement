@@ -77,17 +77,17 @@
 
             <el-col :span="12">
               <el-form-item label="是否是菜单">
-                <el-radio-group v-model="form.ismenu">
-                  <el-radio :label="1">是</el-radio>
-                  <el-radio :label="0">否</el-radio>
+                <el-radio-group v-model="form.isMenu">
+                  <el-radio :label="true">是</el-radio>
+                  <el-radio :label="false">否</el-radio>
                 </el-radio-group>
               </el-form-item>
             </el-col>
             <el-col :span="12">
               <el-form-item label="是否启用">
                 <el-radio-group v-model="form.status">
-                  <el-radio :label="1">是</el-radio>
-                  <el-radio :label="0">否</el-radio>
+                  <el-radio :label="true">是</el-radio>
+                  <el-radio :label="false">否</el-radio>
                 </el-radio-group>
               </el-form-item>
             </el-col>

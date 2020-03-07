@@ -23,6 +23,7 @@ namespace SystemManagement.Service
             CreateMap<SysLoginLog, SysLoginLogDto>().ReverseMap();
             CreateMap<SysMenu, SysMenuDto>().ReverseMap();
             CreateMap<SysMenu, RouterMenu>();
+            CreateMap<SysMenu, MenuNode>();
             CreateMap<SysNotice, SysNoticeDto>().ReverseMap();
             CreateMap<SysOperationLog, SysOperationLogDto>().ReverseMap();
             CreateMap<SysRelation, SysRelationDto>().ReverseMap();
