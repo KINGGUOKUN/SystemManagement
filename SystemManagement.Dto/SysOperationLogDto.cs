@@ -25,6 +25,8 @@ namespace SystemManagement.Dto
 
 		public string Succeed { get; set; }
 
-		public int? UserId { get; set; }
+		public long UserId { get; set; }
+
+		public string UserName { get; set; }
 	}
 }

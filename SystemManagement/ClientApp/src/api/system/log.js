@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function getList(params) {
   return request({
-    url: '/log/list',
+    url: '/log/operationLog/list',
     method: 'get',
     params
   })
@@ -17,7 +17,7 @@ export function queryByUser() {
 
 export function clear() {
   return request({
-    url: '/log',
+    url: '/log/operationLog',
     method: 'delete'
   })
 }
