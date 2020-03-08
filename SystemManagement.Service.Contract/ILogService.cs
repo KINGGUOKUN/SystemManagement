@@ -11,6 +11,8 @@ namespace SystemManagement.Service.Contract
     {
         Task<PagedModel<SysOperationLogDto>> SearchOperationLogs(LogSearchModel searchModel);
 
+        Task AppendOperationLog(SysOperationLogDto logDto);
+
         Task ClearOperationLogs();
     }
 }

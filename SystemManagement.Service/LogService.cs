@@ -29,6 +29,13 @@ namespace SystemManagement.Service
             _userRepository = userRepository;
         }
 
+        public async Task AppendOperationLog(SysOperationLogDto logDto)
+        {
+            var log = _mapper.Map<SysOperationLog>(logDto);
+
+            await _operationLogRepository.InsertAsync(log);
+        }
+
         public async Task ClearOperationLogs()
         {
             await _operationLogRepository.ClearLogs();
