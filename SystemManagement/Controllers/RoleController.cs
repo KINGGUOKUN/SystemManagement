@@ -12,6 +12,7 @@ namespace SystemManagement.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Permission("role")]
     public class RoleController : ControllerBase
     {
         private readonly IRoleService _roleService;
@@ -34,18 +35,21 @@ namespace SystemManagement.Controllers
         }
 
         [HttpDelete("{roleId}")]
+        [Permission("roleDelete")]
         public async Task RemoveRole(long roleId)
         {
             await _roleService.RemoveRole(roleId);
         }
 
         [HttpPost("savePermisson")]
+        [Permission("roleSetAuthority")]
         public async Task SavePermisson(SysRoleDto roleDto)
         {
             await _roleService.SavePermisson(roleDto.ID, roleDto.Permissions);
         }
 
         [HttpPost]
+        [Permission("roleAdd", "roleEdit")]
         public async Task SaveRole(SysRoleDto roleDto)
         {
             await _roleService.SaveRole(roleDto);

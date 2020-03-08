@@ -10,6 +10,7 @@ using SystemManagement.Service.Contract;
 namespace SystemManagement.Controllers
 {
     [Route("api/[controller]")]
+    [Permission("log")]
     public class LogController : Controller
     {
         private readonly ILogService _logService;
@@ -26,6 +27,7 @@ namespace SystemManagement.Controllers
         }
 
         [HttpDelete("operationLog")]
+        [Permission("logClear")]
         public async Task ClearOperationLogs()
         {
             await _logService.ClearOperationLogs();

@@ -12,6 +12,7 @@ namespace SystemManagement.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Permission("mgr")]
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
@@ -28,24 +29,28 @@ namespace SystemManagement.Controllers
         }
 
         [HttpPost]
+        [Permission("mgrAdd", "mgrEdit")]
         public async Task SaveUser(SysUserDto userDto)
         {
             await _userService.SaveUser(userDto);
         }
 
         [HttpDelete("{userId}")]
+        [Permission("mgrDelete")]
         public async Task RemoveUser(long userId)
         {
             await _userService.RemoveUser(userId);
         }
 
         [HttpPut("setRole")]
+        [Permission("mgrSetRole")]
         public async Task SetRole(SysUserDto userDto)
         {
             await _userService.SetRole(userDto.ID, userDto.RoleId);
         }
 
         [HttpPut("changeStatus/{userId}")]
+        [Permission("mgrFreeze")]
         public async Task ChangeStatus(long userId)
         {
             await _userService.ChangeStatus(userId);

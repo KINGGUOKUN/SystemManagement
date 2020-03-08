@@ -11,6 +11,7 @@ namespace SystemManagement.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Permission("menu")]
     public class MenuController : ControllerBase
     {
         private readonly IMenuService _menuService;
@@ -39,12 +40,14 @@ namespace SystemManagement.Controllers
         }
 
         [HttpPost]
+        [Permission("menuAdd", "menuEdit")]
         public async Task SaveMenu(SysMenuDto menuDto)
         {
             await _menuService.SaveMenu(menuDto);
         }
 
         [HttpDelete("{menuId}")]
+        [Permission("menuDelete")]
         public async Task DeleteMenu(long menuId)
         {
             await _menuService.DeleteMenu(menuId);
