@@ -33,7 +33,7 @@ namespace Microsoft.AspNetCore.Mvc.Filters
                 LogName = this.LogName,
                 LogType = "业务日志",
                 Message = JsonSerializer.Serialize(context.ActionArguments),
-                Method = context.ActionDescriptor.DisplayName,
+                Method = ((Microsoft.AspNetCore.Mvc.Controllers.ControllerActionDescriptor)context.ActionDescriptor).ActionName,
                 Succeed = "",
                 UserId = userContext.ID
             };

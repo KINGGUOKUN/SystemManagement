@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using SystemManagement.Common;
 using SystemManagement.Dto;
 using SystemManagement.Service.Contract;
@@ -22,6 +23,7 @@ namespace SystemManagement.Controllers
             _userService = userService;
         }
 
+        [Log("查询用户")]
         [HttpGet("list")]
         public async Task<PagedModel<SysUserDto>> SearchUsers([FromQuery]UserSearchModel searchModel)
         {

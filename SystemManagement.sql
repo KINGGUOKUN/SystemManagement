@@ -11,7 +11,7 @@
  Target Server Version : 80019
  File Encoding         : 65001
 
- Date: 20/02/2020 19:17:49
+ Date: 11/03/2020 21:23:21
 */
 
 SET NAMES utf8mb4;
@@ -33,7 +33,7 @@ CREATE TABLE `CMSArticle`  (
   `Img` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '文章题图ID',
   `Title` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '标题',
   PRIMARY KEY (`ID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '文章' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '文章' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of CMSArticle
@@ -65,7 +65,7 @@ CREATE TABLE `CMSBanner`  (
   `Type` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '类型',
   `Url` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '点击banner跳转到url',
   PRIMARY KEY (`ID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '文章' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '文章' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of CMSBanner
@@ -99,7 +99,7 @@ CREATE TABLE `CMSChannel`  (
   `Code` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '编码',
   `Name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '名称',
   PRIMARY KEY (`ID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '文章栏目' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '文章栏目' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of CMSChannel
@@ -124,7 +124,7 @@ CREATE TABLE `CMSContacts`  (
   `Remark` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
   `UserName` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '邀约人名称',
   PRIMARY KEY (`ID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '邀约信息' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '邀约信息' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of CMSContacts
@@ -147,7 +147,7 @@ CREATE TABLE `Message`  (
   `TplCode` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '模板编码',
   `Type` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '消息类型,0:短信,1:邮件',
   PRIMARY KEY (`ID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '历史消息' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '历史消息' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of Message
@@ -168,7 +168,7 @@ CREATE TABLE `MessageSender`  (
   `Name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '名称',
   `TplCode` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '短信运营商模板编号',
   PRIMARY KEY (`ID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '消息发送者' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '消息发送者' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of MessageSender
@@ -195,7 +195,7 @@ CREATE TABLE `MessageTemplate`  (
   PRIMARY KEY (`ID`) USING BTREE,
   INDEX `FK942sadqk5x9kbrwil0psyek3n`(`IDMessageSender`) USING BTREE,
   CONSTRAINT `FK942sadqk5x9kbrwil0psyek3n` FOREIGN KEY (`IDMessageSender`) REFERENCES `MessageSender` (`ID`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '消息模板' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '消息模板' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of MessageTemplate
@@ -218,7 +218,7 @@ CREATE TABLE `SysCfg`  (
   `CfgName` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '参数名',
   `CfgValue` varchar(512) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '参数值',
   PRIMARY KEY (`ID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '系统参数' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '系统参数' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of SysCfg
@@ -272,7 +272,7 @@ CREATE TABLE `SysDict`  (
   `Pid` bigint(0) NULL DEFAULT NULL,
   `Tips` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`ID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 71 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '字典' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 70 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '字典' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of SysDict
@@ -307,7 +307,7 @@ CREATE TABLE `SysFileInfo`  (
   `OriginalFileName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `RealFileName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`ID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 26 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '文件' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '文件' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of SysFileInfo
@@ -351,7 +351,7 @@ CREATE TABLE `SysLoginLog`  (
   `Succeed` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `UserId` int(0) NULL DEFAULT NULL,
   PRIMARY KEY (`ID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 73 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '登录日志' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 72 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '登录日志' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of SysLoginLog
@@ -385,7 +385,7 @@ CREATE TABLE `SysMenu`  (
   `Url` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '链接',
   PRIMARY KEY (`ID`) USING BTREE,
   UNIQUE INDEX `UK_s37unj3gh67ujhk83lqva8i1t`(`Code`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 71 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '菜单' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 72 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '菜单' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of SysMenu
@@ -475,12 +475,12 @@ CREATE TABLE `SysNotice`  (
   `Title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `Type` int(0) NULL DEFAULT NULL,
   PRIMARY KEY (`ID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '通知' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '通知' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of SysNotice
 -- ----------------------------
-INSERT INTO `SysNotice` VALUES (1, 1, '2017-01-11 08:53:20', 1, '2019-01-08 23:30:58', '欢迎使用web-flash后台管理系统', '世界', 10);
+INSERT INTO `SysNotice` VALUES (1, 1, '2017-01-11 08:53:20', 1, '2019-01-08 23:30:58', '欢迎使用XXX后台管理系统', '完美世界', 10);
 
 -- ----------------------------
 -- Table structure for SysOperationLog
@@ -497,15 +497,7 @@ CREATE TABLE `SysOperationLog`  (
   `Succeed` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `UserId` int(0) NULL DEFAULT NULL,
   PRIMARY KEY (`ID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '操作日志' ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of SysOperationLog
--- ----------------------------
-INSERT INTO `SysOperationLog` VALUES (1, 'cn.enilu.flash.api.controller.cms.ArticleMgrController', '2019-05-10 13:22:49', '添加参数', '业务日志', '参数名称=system.app.name', 'upload', '成功', 1);
-INSERT INTO `SysOperationLog` VALUES (2, 'cn.enilu.flash.api.controller.cms.ArticleMgrController', '2019-06-10 13:31:09', '修改参数', '业务日志', '参数名称=system.app.name', 'upload', '成功', 1);
-INSERT INTO `SysOperationLog` VALUES (3, 'cn.enilu.flash.api.controller.cms.ArticleMgrController', '2019-07-10 13:22:49', '编辑文章', '业务日志', '参数名称=system.app.name', 'upload', '成功', 1);
-INSERT INTO `SysOperationLog` VALUES (4, 'cn.enilu.flash.api.controller.cms.ArticleMgrController', '2019-08-10 13:31:09', '编辑栏目', '业务日志', '参数名称=system.app.name', 'upload', '成功', 1);
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '操作日志' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for SysRelation
@@ -516,7 +508,7 @@ CREATE TABLE `SysRelation`  (
   `MenuId` bigint(0) NULL DEFAULT NULL,
   `RoleId` bigint(0) NULL DEFAULT NULL,
   PRIMARY KEY (`ID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 144 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '菜单角色关系' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 203 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '菜单角色关系' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of SysRelation
@@ -591,19 +583,44 @@ INSERT INTO `SysRelation` VALUES (67, 38, 1);
 INSERT INTO `SysRelation` VALUES (68, 40, 1);
 INSERT INTO `SysRelation` VALUES (69, 39, 1);
 INSERT INTO `SysRelation` VALUES (70, 47, 1);
-INSERT INTO `SysRelation` VALUES (128, 41, 2);
-INSERT INTO `SysRelation` VALUES (129, 42, 2);
-INSERT INTO `SysRelation` VALUES (130, 43, 2);
-INSERT INTO `SysRelation` VALUES (131, 44, 2);
-INSERT INTO `SysRelation` VALUES (132, 45, 2);
-INSERT INTO `SysRelation` VALUES (133, 46, 2);
-INSERT INTO `SysRelation` VALUES (134, 65, 2);
-INSERT INTO `SysRelation` VALUES (135, 66, 2);
-INSERT INTO `SysRelation` VALUES (136, 67, 2);
-INSERT INTO `SysRelation` VALUES (137, 68, 2);
-INSERT INTO `SysRelation` VALUES (138, 69, 2);
-INSERT INTO `SysRelation` VALUES (139, 70, 2);
-INSERT INTO `SysRelation` VALUES (143, 2, 2);
+INSERT INTO `SysRelation` VALUES (166, 2, 3);
+INSERT INTO `SysRelation` VALUES (167, 41, 3);
+INSERT INTO `SysRelation` VALUES (168, 68, 3);
+INSERT INTO `SysRelation` VALUES (169, 69, 3);
+INSERT INTO `SysRelation` VALUES (170, 42, 3);
+INSERT INTO `SysRelation` VALUES (171, 70, 3);
+INSERT INTO `SysRelation` VALUES (172, 43, 3);
+INSERT INTO `SysRelation` VALUES (173, 66, 3);
+INSERT INTO `SysRelation` VALUES (174, 67, 3);
+INSERT INTO `SysRelation` VALUES (175, 44, 3);
+INSERT INTO `SysRelation` VALUES (176, 45, 3);
+INSERT INTO `SysRelation` VALUES (177, 65, 3);
+INSERT INTO `SysRelation` VALUES (178, 46, 3);
+INSERT INTO `SysRelation` VALUES (179, 3, 3);
+INSERT INTO `SysRelation` VALUES (180, 48, 3);
+INSERT INTO `SysRelation` VALUES (181, 50, 3);
+INSERT INTO `SysRelation` VALUES (182, 51, 3);
+INSERT INTO `SysRelation` VALUES (183, 49, 3);
+INSERT INTO `SysRelation` VALUES (184, 52, 3);
+INSERT INTO `SysRelation` VALUES (185, 53, 3);
+INSERT INTO `SysRelation` VALUES (186, 54, 3);
+INSERT INTO `SysRelation` VALUES (187, 55, 3);
+INSERT INTO `SysRelation` VALUES (188, 1, 2);
+INSERT INTO `SysRelation` VALUES (189, 21, 2);
+INSERT INTO `SysRelation` VALUES (190, 28, 2);
+INSERT INTO `SysRelation` VALUES (191, 2, 2);
+INSERT INTO `SysRelation` VALUES (192, 41, 2);
+INSERT INTO `SysRelation` VALUES (193, 68, 2);
+INSERT INTO `SysRelation` VALUES (194, 69, 2);
+INSERT INTO `SysRelation` VALUES (195, 42, 2);
+INSERT INTO `SysRelation` VALUES (196, 70, 2);
+INSERT INTO `SysRelation` VALUES (197, 43, 2);
+INSERT INTO `SysRelation` VALUES (198, 66, 2);
+INSERT INTO `SysRelation` VALUES (199, 67, 2);
+INSERT INTO `SysRelation` VALUES (200, 44, 2);
+INSERT INTO `SysRelation` VALUES (201, 45, 2);
+INSERT INTO `SysRelation` VALUES (202, 65, 2);
+INSERT INTO `SysRelation` VALUES (203, 46, 2);
 
 -- ----------------------------
 -- Table structure for SysRole
@@ -622,13 +639,13 @@ CREATE TABLE `SysRole`  (
   `Tips` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `Version` int(0) NULL DEFAULT NULL,
   PRIMARY KEY (`ID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '角色' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '角色' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of SysRole
 -- ----------------------------
 INSERT INTO `SysRole` VALUES (1, NULL, NULL, NULL, NULL, 24, '超级管理员', 1, 0, 'administrator', 1);
-INSERT INTO `SysRole` VALUES (2, NULL, NULL, NULL, NULL, 25, '网站管理员', 1, 1, 'developer', NULL);
+INSERT INTO `SysRole` VALUES (2, NULL, NULL, NULL, NULL, NULL, '网站管理员', 2, NULL, 'developer', NULL);
 
 -- ----------------------------
 -- Table structure for SysTask
@@ -651,7 +668,7 @@ CREATE TABLE `SysTask`  (
   `Name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '任务名',
   `Note` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '任务说明',
   PRIMARY KEY (`ID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '定时任务' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '定时任务' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of SysTask
@@ -693,16 +710,18 @@ CREATE TABLE `SysUser`  (
   `RoleId` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '角色id列表，以逗号分隔',
   `Salt` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '密码盐',
   `Sex` int(0) NULL DEFAULT NULL,
-  `Status` bit(1) NULL DEFAULT NULL,
+  `Status` int(0) NULL DEFAULT NULL,
   `Version` int(0) NULL DEFAULT NULL,
   PRIMARY KEY (`ID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '账号' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '账号' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of SysUser
 -- ----------------------------
 INSERT INTO `SysUser` VALUES (-1, NULL, NULL, NULL, NULL, 'system', NULL, NULL, NULL, NULL, '应用系统', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `SysUser` VALUES (1, NULL, '2016-01-29 08:49:53', 1, '2019-03-20 23:45:24', 'admin', NULL, '2017-05-05 00:00:00', 27, 'eniluzt@qq.com', '管理员', 'b5a51391f271f062867e5984e2fcffee', '15021222222', '1', '8pgby', 2, b'1', 25);
-INSERT INTO `SysUser` VALUES (2, NULL, '2018-09-13 17:21:02', 1, '2019-01-09 23:05:51', 'developer', NULL, '2017-12-31 00:00:00', 25, 'eniluzt@qq.com', '网站管理员', 'fac36d5616fe9ebd460691264b28ee27', '15022222222', '2,', 'vscp9', 1, b'1', NULL);
+INSERT INTO `SysUser` VALUES (1, NULL, '2016-01-29 08:49:53', 1, '2019-03-20 23:45:24', 'admin', NULL, '2017-05-05 00:00:00', 27, 'eniluzt@qq.com', '管理员', 'FB62D394677DA9592EF3C2BEDE9F1B2D', '15021222222', '1', '8pgby', 2, 1, 25);
+INSERT INTO `SysUser` VALUES (2, NULL, '2018-09-13 17:21:02', 1, '2019-01-09 23:05:51', 'developer', NULL, '2017-12-31 00:00:00', 25, 'eniluzt@qq.com', '网站管理员', 'fac36d5616fe9ebd460691264b28ee27', '15022222222', '2,', 'vscp9', 1, 1, NULL);
+INSERT INTO `SysUser` VALUES (3, 1, '2020-03-03 21:43:51', 1, '2020-03-07 21:01:08', 'guokun', NULL, NULL, 25, '184494760@qq.com', '郭坤', '9EA2580E4BE4D8D577012AB469C75C82', NULL, '2,', 'vailr', 1, 1, NULL);
+INSERT INTO `SysUser` VALUES (4, 1, '2020-03-05 21:12:18', 1, '2020-03-05 21:29:20', 'test', NULL, '2020-03-25 00:00:00', 26, '12321@qq.com', '测试1', '008FB100979084A4EA9436099C38FD08', NULL, '2,3,', 'd6m3r', 1, 3, NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;
