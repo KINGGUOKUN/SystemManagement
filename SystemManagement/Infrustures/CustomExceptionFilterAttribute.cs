@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Elastic.Apm;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Logging;
 using System;
@@ -35,7 +36,9 @@ namespace Microsoft.AspNetCore.Mvc
                 {
                     StatusCode = 500
                 };
+
                 _logger.LogError(exception, "服务器处理出错");
+                //Agent.Tracer.CurrentTransaction.CaptureException(exception);
             }
 
             context.Result = result;

@@ -1,6 +1,7 @@
 using Autofac;
 using Autofac.Configuration;
 using AutoMapper;
+using Elastic.Apm.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -116,6 +117,8 @@ namespace SystemManagement
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            //app.UseElasticApm(Configuration);
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
