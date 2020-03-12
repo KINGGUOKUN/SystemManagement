@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="ClientApp\package-lock.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="ClientApp\" />
   </ItemGroup>
 

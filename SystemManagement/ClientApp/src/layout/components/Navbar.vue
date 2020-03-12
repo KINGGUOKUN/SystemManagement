@@ -5,10 +5,6 @@
     <breadcrumb class="breadcrumb-container" />
 
     <div class="right-menu">
-
-        <template>
-          <a target="_blank" href="https://www.aliyun.com/1111/2019/home?userCode=alts44ap" style="vertical-align: text-bottom;color:lightblue;">2019双11All in cloud低至一折</a>
-        </template>
         <template>
           <lang-select class="international right-menu-item"/>
         </template>

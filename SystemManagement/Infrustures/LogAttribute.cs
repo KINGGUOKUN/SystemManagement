@@ -20,7 +20,7 @@ namespace Microsoft.AspNetCore.Mvc.Filters
 
         public LogAttribute(string logName)
         {
-            this.LogName = LogName;
+            this.LogName = logName;
         }
 
         public override async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
