@@ -10,7 +10,6 @@ using SystemManagement.Service.Contract;
 namespace SystemManagement.Controllers
 {
     [Route("api/[controller]")]
-    [Permission("dept")]
     [ApiController]
     public class DeptController : ControllerBase
     {

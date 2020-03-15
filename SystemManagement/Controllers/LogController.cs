@@ -10,7 +10,6 @@ using SystemManagement.Service.Contract;
 namespace SystemManagement.Controllers
 {
     [Route("api/[controller]")]
-    [Permission("log")]
     public class LogController : Controller
     {
         private readonly ILogService _logService;
@@ -21,6 +20,7 @@ namespace SystemManagement.Controllers
         }
 
         [HttpGet("operationLog/list")]
+        [Permission("log")]
         public async Task<PagedModel<SysOperationLogDto>> SearchOperationLogs(LogSearchModel searchModel)
         {
             return await _logService.SearchOperationLogs(searchModel);

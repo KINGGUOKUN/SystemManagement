@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SystemManagement.Dto;
@@ -11,7 +12,7 @@ namespace SystemManagement.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Permission("menu")]
+    //[Permission("menu")]
     public class MenuController : ControllerBase
     {
         private readonly IMenuService _menuService;
@@ -27,6 +28,7 @@ namespace SystemManagement.Controllers
             return await _menuService.GetMenus();
         }
 
+        [AllowAnonymous]
         [HttpGet("listForRouter")]
         public async Task<List<RouterMenu>> GetMenusForRouter()
         {
