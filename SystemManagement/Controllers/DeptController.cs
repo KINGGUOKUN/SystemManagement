@@ -20,6 +20,11 @@ namespace SystemManagement.Controllers
             _deptService = deptService;
         }
 
+        /// <summary>
+        /// 删除部门
+        /// </summary>
+        /// <param name="deptId">部门ID</param>
+        /// <returns></returns>
         [HttpDelete("{deptId}")]
         [Permission("deptDelete")]
         public async Task DeleteDept(long deptId)
@@ -27,6 +32,10 @@ namespace SystemManagement.Controllers
             await _deptService.DeleteDept(deptId);
         }
 
+        /// <summary>
+        /// 获取部门列表
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("list")]
         [Permission("deptList")]
         public async Task<List<DeptNode>> GetDeptList()
@@ -34,6 +43,11 @@ namespace SystemManagement.Controllers
             return await _deptService.GetDeptList();
         }
 
+        /// <summary>
+        /// 保存部门信息
+        /// </summary>
+        /// <param name="deptDto">部门</param>
+        /// <returns></returns>
         [HttpPost]
         [Permission("deptAdd", "deptEdit")]
         public async Task SaveDept(SysDeptDto deptDto)

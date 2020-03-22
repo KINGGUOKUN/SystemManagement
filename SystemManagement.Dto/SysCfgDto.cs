@@ -4,6 +4,9 @@ using System.Text;
 
 namespace SystemManagement.Dto
 {
+	/// <summary>
+	/// 系统配置
+	/// </summary>
     public class SysCfgDto : BaseDto<long>
     {
 		/// <summary>

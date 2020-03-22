@@ -32,7 +32,7 @@ namespace SystemManagement.Controllers
         /// <summary>
         /// 登录
         /// </summary>
-        /// <param name="userDto"></param>
+        /// <param name="userDto">用户账户信息</param>
         /// <returns></returns>
         [AllowAnonymous]
         [HttpPost("login")]

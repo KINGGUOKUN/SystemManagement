@@ -4,6 +4,9 @@ using System.Text;
 
 namespace SystemManagement.Dto
 {
+	/// <summary>
+	/// 菜单
+	/// </summary>
 	public class SysMenuDto : BaseDto<long>
 	{
 		/// <summary>

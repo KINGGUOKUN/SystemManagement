@@ -5,8 +5,15 @@ using System.Text;
 
 namespace SystemManagement.Dto
 {
+	/// <summary>
+	/// DTO基类
+	/// </summary>
+	/// <typeparam name="T"></typeparam>
     public class BaseDto<T>
     {
+		/// <summary>
+		/// 主键ID
+		/// </summary>
 		public T ID { get; set; }
 
 		/// <summary>

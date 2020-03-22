@@ -20,6 +20,11 @@ namespace SystemManagement.Controllers
             _noticeService = noticeService;
         }
 
+        /// <summary>
+        /// 获取通知消息列表
+        /// </summary>
+        /// <param name="title">消息标题</param>
+        /// <returns></returns>
         [HttpGet("list")]
         public async Task<List<SysNoticeDto>> GetList(string title)
         {

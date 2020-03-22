@@ -13,11 +13,14 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using Pomelo.EntityFrameworkCore.MySql.Storage;
 using System;
 using System.IdentityModel.Tokens.Jwt;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Security.Claims;
 using System.Text;
 using System.Text.Json;
@@ -106,6 +109,13 @@ namespace SystemManagement
             services.AddAutoMapper(typeof(SystemManagementProfile));
 
             services.AddScoped<UserContext>();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "System Management", Version = "v1" });
+                c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, $"{Assembly.GetExecutingAssembly().GetName().Name}.xml"));
+                c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "SystemManagement.Dto.xml"));
+            });
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
@@ -125,6 +135,14 @@ namespace SystemManagement
             }
 
             app.UseCors("default");
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "System Management V1");
+                c.RoutePrefix = string.Empty;
+            });
 
             app.UseRouting();
 

@@ -19,6 +19,11 @@ namespace SystemManagement.Controllers
             _logService = logService;
         }
 
+        /// <summary>
+        /// 查询操作日志
+        /// </summary>
+        /// <param name="searchModel">日志查询条件</param>
+        /// <returns></returns>
         [HttpGet("operationLog/list")]
         [Permission("log")]
         public async Task<PagedModel<SysOperationLogDto>> SearchOperationLogs(LogSearchModel searchModel)
@@ -26,6 +31,10 @@ namespace SystemManagement.Controllers
             return await _logService.SearchOperationLogs(searchModel);
         }
 
+        /// <summary>
+        /// 清空操作日志
+        /// </summary>
+        /// <returns></returns>
         [HttpDelete("operationLog")]
         [Permission("logClear")]
         public async Task ClearOperationLogs()

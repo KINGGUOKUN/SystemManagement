@@ -4,6 +4,9 @@ using System.Text;
 
 namespace SystemManagement.Dto
 {
+	/// <summary>
+	/// 用户
+	/// </summary>
 	public class SysUserDto : BaseDto<long>
 	{
 		/// <summary>
@@ -11,16 +14,28 @@ namespace SystemManagement.Dto
 		/// </summary>
 		public string Account { get; set; }
 
+		/// <summary>
+		/// 头像
+		/// </summary>
 		public string Avatar { get; set; }
 
+		/// <summary>
+		/// 生日
+		/// </summary>
 		public DateTime? Birthday { get; set; }
 
+		/// <summary>
+		/// 部门ID
+		/// </summary>
 		public long? DeptId { get; set; }
 
+		/// <summary>
+		/// 部门名称
+		/// </summary>
 		public string DeptName { get; set; }
 
 		/// <summary>
-		/// email
+		/// 邮件地址
 		/// </summary>
 		public string Email { get; set; }
 
@@ -44,6 +59,9 @@ namespace SystemManagement.Dto
 		/// </summary>
 		public string RoleId { get; set; }
 
+		/// <summary>
+		/// 角色名称
+		/// </summary>
 		public string RoleName { get; set; }
 
 		/// <summary>
@@ -51,8 +69,14 @@ namespace SystemManagement.Dto
 		/// </summary>
 		public string Salt { get; set; }
 
+		/// <summary>
+		/// 性别
+		/// </summary>
 		public int? Sex { get; set; }
 
+		/// <summary>
+		/// 性别描述
+		/// </summary>
         public string SexName
         {
             get
@@ -67,10 +91,19 @@ namespace SystemManagement.Dto
             }
         }
 
+		/// <summary>
+		/// 账户状态
+		/// </summary>
         public int Status { get; set; }
 
+		/// <summary>
+		/// 账户状态描述
+		/// </summary>
 		public string StatusName => this.Status == 1 ? "启用" : "禁用";
 
+		/// <summary>
+		/// 账户版本号
+		/// </summary>
 		public int? Version { get; set; }
 	}
 }
