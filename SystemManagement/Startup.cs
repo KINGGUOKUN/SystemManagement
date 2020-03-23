@@ -50,9 +50,9 @@ namespace SystemManagement
                      options.JsonSerializerOptions.Converters.Add(new DateTimeNullableConverter());
                  });
 
-            services.AddDbContext<SystemManageDbContext>(options => 
+            services.AddDbContext<SystemManageDbContext>(options =>
                 options.UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole().AddDebug()))
-                    .UseMySql(Configuration.GetConnectionString("Default"), mySqlOptions => 
+                    .UseMySql(Configuration.GetConnectionString("Default"), mySqlOptions =>
                     mySqlOptions.ServerVersion(new ServerVersion(new Version(8, 0, 18), ServerType.MySql))
             ));
 
@@ -113,6 +113,31 @@ namespace SystemManagement
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "System Management", Version = "v1" });
+                
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Description = "JWT Authorization header using the Bearer scheme."
+                });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        new string[] {}
+                    }
+                });
+
                 c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, $"{Assembly.GetExecutingAssembly().GetName().Name}.xml"));
                 c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "SystemManagement.Dto.xml"));
             });
