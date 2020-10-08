@@ -13,7 +13,7 @@ namespace SystemManagement.Service
     {
         public SystemManagementProfile()
         {
-            CreateMap(typeof(IPagedListModel<>), typeof(PagedModel<>));
+            CreateMap(typeof(IPagedListResult<>), typeof(PagedModel<>));
             CreateMap(typeof(ZTreeNode<,>), typeof(Node<>)).IgnoreAllPropertiesWithAnInaccessibleSetter();
             CreateMap<SysCfg, SysCfgDto>().ReverseMap();
             CreateMap<SysDept, SysDeptDto>().ReverseMap();
