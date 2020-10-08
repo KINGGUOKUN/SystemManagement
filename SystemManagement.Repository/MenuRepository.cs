@@ -36,7 +36,7 @@ namespace SystemManagement.Repository
                         select m;
             }
 
-            return await menus.ToListAsync();
+            return await menus.Distinct().ToListAsync();
         }
     }
 }

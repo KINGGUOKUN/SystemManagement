@@ -32,7 +32,6 @@ namespace SystemManagement.Service
             CreateMap<SysTaskLog, SysTaskLogDto>().ReverseMap();
             CreateMap<SysUser, SysUserDto>().ReverseMap();
             CreateMap<SysUser, UserProfile>();
-            CreateMap<SysNotice, SysNoticeDto>().ReverseMap();
         }
     }
 }

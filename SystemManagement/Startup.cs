@@ -23,6 +23,7 @@ using System.Linq;
 using System.Reflection;
 using System.Security.Claims;
 using System.Text;
+using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Threading.Tasks;
 using SystemManagement.Common;
@@ -40,12 +41,12 @@ namespace SystemManagement
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers(options => options.Filters.Add(typeof(CustomExceptionFilterAttribute)))
                  .AddJsonOptions(options =>
                  {
+                     options.JsonSerializerOptions.Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
                      options.JsonSerializerOptions.Converters.Add(new DateTimeConverter());
                      options.JsonSerializerOptions.Converters.Add(new DateTimeNullableConverter());
                  });
@@ -93,7 +94,7 @@ namespace SystemManagement
                 });
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
-            services.AddSingleton<IAuthorizationHandler, PermissionHandler>();
+            services.AddScoped<IAuthorizationHandler, PermissionHandler>();
 
             services.AddCors(options =>
             {
